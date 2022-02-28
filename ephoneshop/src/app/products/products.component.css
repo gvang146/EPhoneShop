@@ -18,7 +18,7 @@ input
 {
     display: flex;
 }
-/* button
+button
 {
     border-radius: 5px;
     border: 0px;
@@ -26,7 +26,7 @@ input
     color:white;
     padding: 5px;
     margin: 5px;
-} */
+}
 .btn-group
 {
     margin: 5px;
