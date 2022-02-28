@@ -14,9 +14,14 @@ input
 {
     margin: 10px;
 }
-.login-form
+.login-info
 {
     display: flex;
+    flex-direction: column;
+}
+mat-form-field
+{
+    margin: 10px;
 }
 /* button
 {
