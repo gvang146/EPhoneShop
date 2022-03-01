@@ -2,33 +2,18 @@ html
 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    display: flex;
-    align-items:center;
-    flex-direction: column;
-    margin-top: 100px;
 }
-label{
-    margin: 10px;
-}
-input 
+.container
 {
-    margin: 10px;
+    flex-wrap: wrap;
 }
-.login-form
+.filter
 {
     display: flex;
+    position: relative;
+    float: left;
+    max-height: 100%;
 }
-button
+.cards
 {
-    border-radius: 5px;
-    border: 0px;
-    background-color: #025e16;
-    color:white;
-    padding: 5px;
-    margin: 5px;
-}
-.btn-group
-{
-    margin: 5px;
-    padding: 10px;
 }
