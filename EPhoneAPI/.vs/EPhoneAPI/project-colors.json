@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "44b3b775-84e4-46ad-b622-e248cb8081f1": {
+      "ProjectGuid": "44b3b775-84e4-46ad-b622-e248cb8081f1",
+      "DisplayName": "EPhoneAPI",
+      "ColorIndex": 0
+    },
+    "d021c103-860e-4848-be94-842736310dab": {
+      "ProjectGuid": "d021c103-860e-4848-be94-842736310dab",
+      "DisplayName": "EphoneShopAPI",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

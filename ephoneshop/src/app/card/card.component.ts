@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsComponent } from '../products/products.component';
+import { EphoneAPIService } from '../ephone-api.service';
+
 
 @Component({
   selector: 'app-card',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:EphoneAPIService) { }
+
+  ProductsList:any=[];
 
   ngOnInit(): void {
+    this.refreshProList();
+  }
+
+  refreshProList(){
+    this.service.getProList().subscribe(data=>{
+      this.ProductsList=data;
+    })
   }
 
 }

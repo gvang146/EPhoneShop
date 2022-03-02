@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="cards">
+        <mat-card class="card1" *ngFor="let dataItem of ProductsList">
+            <mat-card-title>{{dataItem.serialNum}}</mat-card-title>
+            <mat-card-subtitle>{{dataItem.name}}</mat-card-subtitle>
+            <img mat-card-image  src="../../assets/Images/phone 8.jpg">
+            <mat-card-content> 
+                    Leave your old phone in the dust <br/>
+                    with the all new Uphone300 <br/>
+                            Model: {{dataItem.modelNum}} <br/>  
+                            Color: {{dataItem.color}}<br/>
+                            Speed: {{dataItem.speed}}<br/><br/> 
+                            Price: {{dataItem.price}}<br/>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit">Check-Out</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
