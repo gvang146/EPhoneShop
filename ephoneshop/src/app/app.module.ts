@@ -15,8 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RoutingComponents,
     NavbarComponent,
     CardComponent,
-    
   ],
   imports: [
     BrowserModule,
