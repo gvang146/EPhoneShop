@@ -20,7 +20,7 @@ namespace EPhoneAPI.Controllers
         {
             //Creating A connection to the MySQL sever and sending a directly implemented query
             string query = @"
-                    select * from ephone.employee
+                    select * from ephonedb.employee
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -39,7 +39,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephone.employee (Id) values
+                    insert into ephonedb.employee (Id) values
                     ('"+emp.Id + @"')
                     ";
                 DataTable table = new DataTable();
@@ -64,7 +64,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephone.employee set firstName =
+                    update ephonedb.employee set firstName =
                     '" + emp.FirstName + @"'
                     where Id="+emp.Id+@"
                     ";
@@ -90,7 +90,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    delete from ephone.employee
+                    delete from ephonedb.employee
                     where Id=" + id + @"
                     ";
                 DataTable table = new DataTable();
@@ -115,7 +115,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetAllEmployees()
         {
             string query = @"
-                    select * from ephone.employee
+                    select * from ephonedb.employee
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))

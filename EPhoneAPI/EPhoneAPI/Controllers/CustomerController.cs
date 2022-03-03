@@ -20,7 +20,7 @@ namespace EPhoneAPI.Controllers
         {
             //Creating A connection to the MySQL sever and sending a directly implemented query
             string query = @"
-                    select * from ephone.customer
+                    select * from ephonedb.customer
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -39,8 +39,8 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephone.customer (Id) values
-                    ('" + cus.Id + @"')
+                    insert into ephonedb.customer (Id) values
+                    ('" + cus.AccountNum + @"')
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -64,9 +64,9 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephone.customer set firstName =
+                    update ephonedb.customer set firstName =
                     '" + cus.FirstName + @"'
-                    where Id=" + cus.Id + @"
+                    where Id=" + cus.AccountNum + @"
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -85,13 +85,13 @@ namespace EPhoneAPI.Controllers
             }
         }
 
-        public string Delete(int id)
+        public string Delete(int AccountNum)
         {
             try
             {
                 string query = @"
-                    delete from ephone.customer
-                    where Id=" + id + @"
+                    delete from ephonedb.customer
+                    where Id=" + AccountNum + @"
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -115,7 +115,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetAllCustomers()
         {
             string query = @"
-                    select * from ephone.customers
+                    select * from ephonedb.customers
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))

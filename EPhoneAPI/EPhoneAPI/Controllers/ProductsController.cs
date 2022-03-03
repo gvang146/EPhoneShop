@@ -20,7 +20,7 @@ namespace EPhoneAPI.Controllers
         {
             //Creating A connection to the MySQL sever and sending a directly implemented query
             string query = @"
-                    select * from ephone.products
+                    select * from ephonedb.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -39,8 +39,8 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephone.products (serialNum) values
-                    ('" + pro.SerialNum + @"')
+                    insert into ephonedb.product (serialNum) values
+                    ('" + pro.ItemNum + @"')
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -64,9 +64,9 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephone.products set name =
+                    update ephonedb.product set name =
                     '" + pro.Name + @"'
-                    where serialNum=" + pro.SerialNum + @"
+                    where serialNum=" + pro.ItemNum + @"
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -85,13 +85,13 @@ namespace EPhoneAPI.Controllers
             }
         }
 
-        public string Delete(int serialNumber)
+        public string Delete(int ItemNum)
         {
             try
             {
                 string query = @"
-                    delete from ephone.products
-                    where serialNum=" + serialNumber + @"
+                    delete from ephonedb.product
+                    where serialNum=" + ItemNum + @"
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -115,7 +115,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetAllProducts()
         {
             string query = @"
-                    select * from ephone.products
+                    select * from ephonedb.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
