@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EphoneAPIService } from 'src/app/ephone-api.service';
+import { EphoneAPIService } from '../../../app/ephone-api.service';
 
 @Component({
   selector: 'app-show-product',
