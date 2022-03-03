@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsComponent } from '../products/products.component';
-import { EphoneAPIService } from '../ephone-api.service';
+import { EphoneAPIService } from './../ephone-api.service';
 
 
 @Component({

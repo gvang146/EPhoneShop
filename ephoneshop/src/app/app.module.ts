@@ -30,7 +30,6 @@ import { EphoneAPIService } from './ephone-api.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {HttpClientModule} from '@angular/common/http';
-import { ShowProductComponent } from './card/show-product/show-product.component'
 
 
 @NgModule({
@@ -47,8 +46,7 @@ import { ShowProductComponent } from './card/show-product/show-product.component
     AddEditCusComponent,
     ProductsComponent,
     ShowProComponent,
-    AddEditProComponent,
-    ShowProductComponent,
+    AddEditProComponent
   ],
   imports: [
     BrowserModule,

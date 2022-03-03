@@ -6,13 +6,15 @@ html
 .container
 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .filter
 {
     max-width: 10%;
-    max-height: 100%;
+    max-height: 70%;
     margin: 10px;
+    float: left;
 }
 mat-label
 {
@@ -21,4 +23,11 @@ mat-label
 .label
 {
     font-size: medium;
+}
+.cards
+{
+    display: flex;
+    position: relative;
+    max-width: 80%;
+    justify-content: left;
 }
