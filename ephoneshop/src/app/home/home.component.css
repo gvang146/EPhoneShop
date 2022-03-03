@@ -118,11 +118,6 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .PA-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2}
 .PA-display-topleft{position:absolute;left:0;top:0}.PA-display-topright{position:absolute;right:0;top:0}
 .PA-display-bottomleft{position:absolute;left:0;bottom:0}.PA-display-bottomright{position:absolute;right:0;bottom:0}
-.PA-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}
-.PA-display-left{position:absolute;top:50%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
-.PA-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
-.PA-display-topmiddle{position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
-.PA-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
 .PA-display-container:hover .PA-display-hover{display:block}.PA-display-container:hover span.PA-display-hover{display:inline-block}.PA-display-hover{display:none}
 .PA-display-position{position:absolute}
 .PA-circle{border-radius:50%}
@@ -159,12 +154,6 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .PA-section,.PA-code{margin-top:16px!important;margin-bottom:16px!important}
 .PA-margin{margin:16px!important}.PA-margin-top{margin-top:16px!important}.PA-margin-bottom{margin-bottom:16px!important}
 .PA-margin-left{margin-left:16px!important}.PA-margin-right{margin-right:16px!important}
-.PA-padding-small{padding:4px 8px!important}.PA-padding{padding:8px 16px!important}.PA-padding-large{padding:12px 24px!important}
-.PA-padding-16{padding-top:16px!important;padding-bottom:16px!important}.PA-padding-24{padding-top:24px!important;padding-bottom:24px!important}
-.PA-padding-32{padding-top:32px!important;padding-bottom:32px!important}.PA-padding-48{padding-top:48px!important;padding-bottom:48px!important}
-.PA-padding-64{padding-top:64px!important;padding-bottom:64px!important}
-.PA-padding-top-64{padding-top:64px!important}.PA-padding-top-48{padding-top:48px!important}
-.PA-padding-top-32{padding-top:32px!important}.PA-padding-top-24{padding-top:24px!important}
 .PA-left{float:left!important}.PA-right{float:right!important}
 .PA-button:hover{color:#000!important;background-color:#ccc!important}
 .PA-transparent,.PA-hover-none:hover{background-color:transparent!important}
