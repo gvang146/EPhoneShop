@@ -27,6 +27,7 @@ import { ShowProComponent } from './products/show-pro/show-pro.component';
 import { AddEditProComponent } from './products/add-edit-pro/add-edit-pro.component';
 import { ProductsComponent } from './products/products.component';
 import { EphoneAPIService } from './ephone-api.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {HttpClientModule} from '@angular/common/http';
 import { ShowProductComponent } from './card/show-product/show-product.component'
@@ -64,7 +65,8 @@ import { ShowProductComponent } from './card/show-product/show-product.component
     MatMenuModule,
     MatDividerModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule
   ],
   providers: [EphoneAPIService],
   bootstrap: [AppComponent]

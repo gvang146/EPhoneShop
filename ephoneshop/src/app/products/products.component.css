@@ -5,12 +5,20 @@ html
 }
 .container
 {
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
 }
 .filter
 {
-    display: flex;
-    position: relative;
-    float: left;
+    max-width: 10%;
     max-height: 100%;
+    margin: 10px;
+}
+mat-label
+{
+    font-size: large;
+}
+.label
+{
+    font-size: medium;
 }

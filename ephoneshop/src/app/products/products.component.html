@@ -1,105 +1,125 @@
-<!DOCTYPE html>
-<html>
-    <head>
 
-    </head>
-    <body>
-        <div clas="container">
-            <div class="filter">
-                <mat-list role="list">
-                    <mat-accordion>
-                        <mat-label>Filter Phones By</mat-label>
+<div clas="container">
+    <div class="filter">
+        <mat-label>Filter By Features</mat-label>
+        <mat-divider></mat-divider>
+        <mat-list role="list">
+            <mat-accordion>
+                <mat-label class="label">Processors</mat-label>
+                <mat-divider></mat-divider>
+                <mat-selection-list #Processors>
+                    <mat-list-option *ngFor="let processor of typesOfProcessors">
+                        {{processor}}
+                    </mat-list-option>
+                </mat-selection-list>
+                <!-- <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-list-item role="listFilter4">Features</mat-list-item>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <mat-list-item> <button mat-button value="lvlone">Level 1 Processor</button></mat-list-item>
                         <mat-divider></mat-divider>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    <mat-list-item role="listFilter4">Features</mat-list-item>
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <mat-list>
-                                <mat-list-item> <button mat-button value="lvlone">Level 1 Processor</button></mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item> <button mat-button value="lvltwo">Level 2 Processor</button> </mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item> <button mat-button value="lvlthree">Level 3 Processor</button> </mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item> <button mat-button value="lvlfive">Level 5 Processor</button> </mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item> <button mat-button value="lvlseven">Level 7 Processor</button> </mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item> <button mat-button value="lvlten">Level 10 Processor</button> </mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item> <button mat-button value="ultimate">Ultimate Processor</button> </mat-list-item>
-                            </mat-list>
-                        </mat-expansion-panel>
+                        <mat-list-item> <button mat-button value="lvltwo">Level 2 Processor</button> </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <button mat-button value="lvlthree">Level 3 Processor</button> </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <button mat-button value="lvlfive">Level 5 Processor</button> </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <button mat-button value="lvlseven">Level 7 Processor</button> </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <button mat-button value="lvlten">Level 10 Processor</button> </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <button mat-button value="ultimate">Ultimate Processor</button> </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel> -->
+            <mat-divider></mat-divider>
+            <mat-label class="label">Brand</mat-label>
+                <mat-divider></mat-divider>
+            <mat-selection-list #Brand>
+                <mat-list-option *ngFor="let brand of typesOfBrand">
+                    {{brand}}
+                </mat-list-option>
+            </mat-selection-list>
+            <!-- <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-list-item role="listFilter4">Brand</mat-list-item>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item> <button mat-button value="thamson">Thamson</button></mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <mat-list-item role="listFilter4">Brand</mat-list-item>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <mat-list>
-                            <mat-list-item> <button mat-button value="thamson">Thamson</button></mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="uphone">UPhone</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="universe">Universe</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="doogle">Doogle</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="pg">PG</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="enginerola">Enginerola</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="dokia">Dokia</button> </mat-list-item>
-                        </mat-list>
-                    </mat-expansion-panel>
+                    <mat-list-item> <button mat-button value="uphone">UPhone</button> </mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <mat-list-item role="listFilter4">Speed</mat-list-item>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <mat-list>
-                            <mat-list-item> <button mat-button value="5">5G</button></mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="4">4G</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="3">3G</button> </mat-list-item>
-                        </mat-list>
-                    </mat-expansion-panel>
+                    <mat-list-item> <button mat-button value="universe">Universe</button> </mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <mat-list-item role="listFilter4">Price</mat-list-item>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <mat-list>
-                            <mat-list-item> <button mat-button value="900">$900+</button></mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="800">$800+</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="700">$700+</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="600">$600+</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="500">$500+</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="400">$400+</button> </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <mat-list-item> <button mat-button value="300">$300+</button> </mat-list-item>
-                        </mat-list>
-                    </mat-expansion-panel>
-                    </mat-accordion>
+                    <mat-list-item> <button mat-button value="doogle">Doogle</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="pg">PG</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="enginerola">Enginerola</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="dokia">Dokia</button> </mat-list-item>
                 </mat-list>
-            </div>
-            <div class="cards">
-                <app-card></app-card>
-            </div>
-        </div>
-    </body>
-</html>
-
+            </mat-expansion-panel> -->
+            <mat-divider></mat-divider>
+            <mat-label class="label">Speed</mat-label>
+                <mat-divider></mat-divider>
+            <mat-selection-list #Speed>
+                <mat-list-option *ngFor="let speed of typesOfSpeed">
+                    {{speed}}
+                </mat-list-option>
+            </mat-selection-list>
+            <!-- <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-list-item role="listFilter4">Speed</mat-list-item>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item> <button mat-button value="5">5G</button></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="4">4G</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="3">3G</button> </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel> -->
+            <mat-divider></mat-divider>
+            <mat-label class="label">Price</mat-label>
+                <mat-divider></mat-divider>
+            <mat-selection-list #Price>
+                <mat-list-option *ngFor="let price of typesOfPrice">
+                    {{price}}
+                </mat-list-option>
+            </mat-selection-list>
+            <!-- <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-list-item role="listFilter4">Price</mat-list-item>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item> <button mat-button value="900">$900+</button></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="800">$800+</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="700">$700+</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="600">$600+</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="500">$500+</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="400">$400+</button> </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item> <button mat-button value="300">$300+</button> </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel> -->
+            </mat-accordion>
+        </mat-list>
+    </div>
+    <div class="cards">
+        <app-card></app-card>
+    </div>
+</div>

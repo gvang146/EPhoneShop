@@ -6,7 +6,38 @@
 <body>
     <div clas="container">
         <div class="signup-input">
-            <form class="signup-form">
+            <mat-card>
+                <mat-card-title>Sign-Up</mat-card-title>
+                <div class="signup-content">
+                    <mat-card-content>
+                        <mat-form-field class="firstName">
+                            <mat-label>First Name</mat-label>
+                            <input formControlName="firstName" matInput>
+                        </mat-form-field>
+                        <mat-form-field class="lastName">
+                            <mat-label>Last Name</mat-label>
+                            <input formControlName="lastName" matInput>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>E-mail</mat-label>
+                            <input formControlName="email" matInput>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input formControlName="pass" type="password" matInput>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Confirm Password</mat-label>
+                            <input formControlName="pass" type="password" matInput>
+                        </mat-form-field>
+                        <div>
+                            <button mat-raised-button color="primary">Sign-up</button>
+                            <button mat-raised-button color="warn">Cancel</button>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+            <!-- <form class="signup-form">
                 <fieldset>
                     <legend>Sign-Up</legend>
                     <div class="name">
@@ -36,7 +67,7 @@
                         <a type="button" href="/signup" mat-raised-button color="danger">Cancel</a>
                     </div>
                 </fieldset>
-            </form>
+            </form> -->
         </div>
     </div>
 </body>
