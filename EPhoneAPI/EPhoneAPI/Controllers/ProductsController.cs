@@ -18,7 +18,7 @@ namespace EPhoneAPI.Controllers
         // GET: Products
         public HttpResponseMessage Get()
         {
-            //Creating A connection to the MySQL sever and sending a directly implemented query
+            //Creating A connection to the MySQL server and sending a directly implemented query
             string query = @"
                     select * from ephone.products
                     ";
@@ -129,5 +129,42 @@ namespace EPhoneAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
 
+        [Route("api/Products/GetSumOfProducts")]
+        [HttpGet]
+        public HttpResponseMessage GetSumOfProducts()
+        {
+            string query = @"
+                    select SUM(price) price from ephone.products
+                    ";
+            DataTable table = new DataTable();
+            using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
+            using (var cmd = new MySqlCommand(query, con))
+            using (var da = new MySqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
+
+        [Route("api/Products/GetCount")]
+        [HttpGet]
+        public HttpResponseMessage GetCount()
+        {
+            string query = @"
+                    select COUNT(serialNum) count from ephone.products
+                    ";
+            DataTable table = new DataTable();
+            using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
+            using (var cmd = new MySqlCommand(query, con))
+            using (var da = new MySqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
     }
 }

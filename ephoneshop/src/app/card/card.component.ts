@@ -10,18 +10,10 @@ import { EphoneAPIService } from '../ephone-api.service';
 })
 export class CardComponent implements OnInit {
 
-  constructor(private service:EphoneAPIService) { }
-
-  ProductsList:any=[];
+  constructor() { }
 
   ngOnInit(): void {
-    this.refreshProList();
   }
 
-  refreshProList(){
-    this.service.getProList().subscribe(data=>{
-      this.ProductsList=data;
-    })
-  }
 
 }
