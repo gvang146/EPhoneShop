@@ -31,6 +31,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {HttpClientModule} from '@angular/common/http';
 
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +49,9 @@ import {HttpClientModule} from '@angular/common/http';
     AddEditCusComponent,
     ProductsComponent,
     ShowProComponent,
-    AddEditProComponent
+    AddEditProComponent,
+    CheckoutComponent,
+    ShowCheckoutComponent
   ],
   imports: [
     BrowserModule,

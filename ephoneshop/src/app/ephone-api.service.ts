@@ -59,6 +59,14 @@ readonly APIUrl="http://localhost:60942/api";
   }
 
 
+  getSumOfProducts():Observable<any[]>{
+    return this.http.get<any>(this.APIUrl+'/Products/GetSumOfProducts')
+  }
+
+  getCount():Observable<any[]>{
+    return this.http.get<any>(this.APIUrl+'/Products/GetCount')
+  }
+
   getAllProducts():Observable<any[]>{
     return this.http.get<any>(this.APIUrl+'/Products/GetAllProducts');
   }
