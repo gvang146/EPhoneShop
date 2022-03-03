@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'developer', component: DeveloperComponent},
   { path: '', component: HomeComponent},
-  { path: 'signup', component: SignupComponent}
+  { path: 'signup', component: SignupComponent},
 ];
 
 @NgModule({
@@ -27,4 +27,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents = [ProductsComponent, LoginComponent, HomeComponent, DeveloperComponent, SignupComponent];
+export const RoutingComponents = [ProductsComponent, LoginComponent, HomeComponent, DeveloperComponent, SignupComponent , CheckoutComponent];

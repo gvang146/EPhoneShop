@@ -50,7 +50,6 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     ProductsComponent,
     ShowProComponent,
     AddEditProComponent,
-    CheckoutComponent,
     ShowCheckoutComponent
   ],
   imports: [
