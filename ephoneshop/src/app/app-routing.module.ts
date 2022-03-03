@@ -5,17 +5,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DeveloperComponent } from './developer/developer.component';
 import { SignupComponent } from './signup/signup.component';
-
-import { EmployeeComponent } from './employee/employee.component';
-import { CustomerComponent } from './customer/customer.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const routes: Routes = [
   { path: 'products', component: ProductsComponent},
   { path: 'checkout', component: CheckoutComponent},
-  { path: 'employee', component: EmployeeComponent},
-  { path: 'customer', component: CustomerComponent},
   { path: 'login', component: LoginComponent},
   { path: 'developer', component: DeveloperComponent},
   { path: '', component: HomeComponent},
