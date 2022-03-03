@@ -1,29 +1,29 @@
 <div class="container">
-    <div class="cards">
+    <div class="cards"  *ngFor="let product of products">
         <mat-card class="card1">
             <mat-card-title>UPhone3000</mat-card-title>
-            <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
             <img mat-card-image  src="../../assets/Images/phone 8.jpg">
-            <mat-card-content> 
+            <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
+            <mat-card-content>
                     Leave your old phone in the dust <br/>
                     with the all new Uphone300 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary" type="submit">Check-Out</button>
+                <button mat-raised-button color="primary" (click)="_addItemToCart(product._id, 1)" >Check-Out</button>
             </mat-card-actions>
         </mat-card>
         <mat-card class="card2">
             <mat-card-title>ByePhone8000</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>Some Offer</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     Say bye to your old phone <br/>
                     with the all new ByePhone8000 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
                             Speed: <br/><br/>
                             Price: <br/>
@@ -36,12 +36,12 @@
             <mat-card-title>UniverseGateTrill</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     The strongest phone in the market<br/>
                     with the all new UniverseGateTrill <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions class="cardbtn">
@@ -52,12 +52,12 @@
             <mat-card-title>UPhone3000</mat-card-title>
             <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
             <img mat-card-image  src="../../assets/Images/phone 8.jpg">
-            <mat-card-content> 
+            <mat-card-content>
                     Leave your old phone in the dust <br/>
                     with the all new Uphone300 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions>
@@ -68,12 +68,12 @@
             <mat-card-title>ByePhone8000</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>Some Offer</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     Say bye to your old phone <br/>
                     with the all new ByePhone8000 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions>
@@ -84,12 +84,12 @@
             <mat-card-title>UniverseGateTrill</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     The strongest phone in the market<br/>
                     with the all new UniverseGateTrill <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions class="cardbtn">
@@ -100,12 +100,12 @@
             <mat-card-title>UPhone3000</mat-card-title>
             <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
             <img mat-card-image  src="../../assets/Images/phone 8.jpg">
-            <mat-card-content> 
+            <mat-card-content>
                     Leave your old phone in the dust <br/>
                     with the all new Uphone300 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions>
@@ -116,12 +116,12 @@
             <mat-card-title>ByePhone8000</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>Some Offer</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     Say bye to your old phone <br/>
                     with the all new ByePhone8000 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions>
@@ -132,12 +132,12 @@
             <mat-card-title>UniverseGateTrill</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     The strongest phone in the market<br/>
                     with the all new UniverseGateTrill <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions class="cardbtn">
@@ -148,12 +148,12 @@
             <mat-card-title>UPhone3000</mat-card-title>
             <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
             <img mat-card-image  src="../../assets/Images/phone 8.jpg">
-            <mat-card-content> 
+            <mat-card-content>
                     Leave your old phone in the dust <br/>
                     with the all new Uphone300 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions>
@@ -164,12 +164,12 @@
             <mat-card-title>ByePhone8000</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>Some Offer</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     Say bye to your old phone <br/>
                     with the all new ByePhone8000 <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions>
@@ -180,12 +180,12 @@
             <mat-card-title>UniverseGateTrill</mat-card-title>
             <img mat-card-image src="../../assets/Images/phone 8.jpg">
             <mat-card-subtitle>HOT ITEM! NEW!</mat-card-subtitle>
-            <mat-card-content> 
+            <mat-card-content>
                     The strongest phone in the market<br/>
                     with the all new UniverseGateTrill <br/>
-                            Model: <br/>  
+                            Model: <br/>
                             Color: <br/>
-                            Speed: <br/><br/> 
+                            Speed: <br/><br/>
                             Price: <br/>
             </mat-card-content>
             <mat-card-actions class="cardbtn">
