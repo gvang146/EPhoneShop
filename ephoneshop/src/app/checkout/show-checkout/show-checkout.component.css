@@ -1,4 +1,5 @@
 span.price {
     float: right;
     color: grey;
+    flex-direction: column;
   }

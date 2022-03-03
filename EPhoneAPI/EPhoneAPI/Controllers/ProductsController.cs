@@ -91,7 +91,7 @@ namespace EPhoneAPI.Controllers
             {
                 string query = @"
                     delete from ephonedb.product
-                    where serialNum=" + ItemNum + @"
+                    where ItemNum=" + ItemNum + @"
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -134,7 +134,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetSumOfProducts()
         {
             string query = @"
-                    select SUM(price) price from ephone.products
+                    select SUM(price) price from ephonedb.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -153,7 +153,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetCount()
         {
             string query = @"
-                    select COUNT(serialNum) count from ephone.products
+                    select COUNT(ItemNum) count from ephonedb.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
