@@ -29,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     CardComponent,
     CartComponent,
-  ],
+],
   imports: [
     BrowserModule,
     AppRoutingModule,

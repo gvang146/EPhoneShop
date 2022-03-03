@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
       console.log(this.carts);
     });
   }
-  _increamentQTY(id, quantity): void {
+  _increamentQTY(id: any, quantity: any): void {
     const payload = {
       productId: id,
       quantity,
