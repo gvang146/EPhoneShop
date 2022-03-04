@@ -11,7 +11,6 @@
     <div class="col-75">
       <div class="container">
         <mat-card>
-  
           <div class="row">
             <div class="col-50">
                 <mat-card-content>
@@ -32,7 +31,6 @@
                         <mat-label><i class="fa fa-institution"></i> City</mat-label>
                         <input formControlName="city" placeholder="New York" matInput>
                     </mat-form-field>
-              
                     <div class="row">
                         <div class="col-50">
                             <mat-form-field appearance="fill">
@@ -49,8 +47,6 @@
                     </div>
                 </mat-card-content>
             </div>
-            
-            
             <div class="col-50">
                 <mat-card-content>
                     <mat-card-title> Payment</mat-card-title>
@@ -72,7 +68,6 @@
                         <mat-label> Exp Month</mat-label>
                         <input formControlName="expmonth" placeholder="September" matInput>
                     </mat-form-field>
-
                     <div class="row">
                         <div class="col-50">
                             <mat-form-field appearance="fill">
@@ -87,18 +82,13 @@
                             </mat-form-field>
                         </div>
                     </div>
-
-
-                    
                 </mat-card-content>
             </div>
-            
           </div>
           <mat-checkbox name="sameadr" style="margin-left: 10px;"> Shipping address same as billing</mat-checkbox>
         </mat-card>  
     </div>
     </div>
-  
     <div class="col-25">
       <div class="container" style="margin-left: -50px">
         <h4> Cart
@@ -112,6 +102,5 @@
         <p>Total <span class="price" style="color:black"><b *ngFor="let dataItem of ProductSum">${{dataItem.price}}</b></span></p>
         <button color="primary" type="submit" mat-raised-button> Confirm Order </button>
       </div>
-      
     </div>
   </div>
