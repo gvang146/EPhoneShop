@@ -20,7 +20,7 @@ namespace EPhoneAPI.Controllers
         {
             //Creating A connection to the MySQL sever and sending a directly implemented query
             string query = @"
-                    select * from ephonedb.customercart
+                    select * from sqlfirstdatabase.customercart
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -39,7 +39,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephonedb.customercart (Id) values
+                    insert into sqlfirstdatabase.customercart (Id) values
                     ('" + cart.OrderNum + @"')
                     ";
                 DataTable table = new DataTable();
@@ -64,7 +64,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephonedb.customercart set firstName =
+                    update sqlfirstdatabase.customercart set firstName =
                     '" + cart.FirstName + @"'
                     where Id=" + cart.OrderNum + @"
                     ";
@@ -90,7 +90,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    delete from ephonedb.customercart
+                    delete from sqlfirstdatabase.customercart
                     where Id=" + OrderNum + @"
                     ";
                 DataTable table = new DataTable();
@@ -115,7 +115,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetAllCustomers()
         {
             string query = @"
-                    select * from ephonedb.customercart
+                    select * from sqlfirstdatabase.customercart
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))

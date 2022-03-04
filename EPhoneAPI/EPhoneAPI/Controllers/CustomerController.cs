@@ -20,7 +20,7 @@ namespace EPhoneAPI.Controllers
         {
             //Creating A connection to the MySQL sever and sending a directly implemented query
             string query = @"
-                    select * from ephonedb.customer
+                    select * from sqlfirstdatabase.customer
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -39,7 +39,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephonedb.customer (Id) values
+                    insert into sqlfirstdatabase.customer (Id) values
                     ('" + cus.AccountNum + @"')
                     ";
                 DataTable table = new DataTable();
@@ -64,7 +64,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephonedb.customer set firstName =
+                    update sqlfirstdatabase.customer set firstName =
                     '" + cus.FirstName + @"'
                     where Id=" + cus.AccountNum + @"
                     ";
@@ -90,7 +90,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    delete from ephonedb.customer
+                    delete from sqlfirstdatabase.customer
                     where Id=" + AccountNum + @"
                     ";
                 DataTable table = new DataTable();
@@ -115,7 +115,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetAllCustomers()
         {
             string query = @"
-                    select * from ephonedb.customers
+                    select * from sqlfirstdatabase.customers
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))

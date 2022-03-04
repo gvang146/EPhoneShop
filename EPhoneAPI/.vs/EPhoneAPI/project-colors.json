@@ -10,7 +10,12 @@
       "ProjectGuid": "d021c103-860e-4848-be94-842736310dab",
       "DisplayName": "EphoneShopAPI",
       "ColorIndex": 1
+    },
+    "6b3603dd-a458-4d40-8ab0-00351bef0f84": {
+      "ProjectGuid": "6b3603dd-a458-4d40-8ab0-00351bef0f84",
+      "DisplayName": "EPhoneAPI",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }

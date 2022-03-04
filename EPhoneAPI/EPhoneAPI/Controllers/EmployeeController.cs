@@ -20,7 +20,7 @@ namespace EPhoneAPI.Controllers
         {
             //Creating A connection to the MySQL sever and sending a directly implemented query
             string query = @"
-                    select * from ephonedb.employee
+                    select * from sqlfirstdatabase.employee
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -39,8 +39,8 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephonedb.employee (Id) values
-                    ('"+emp.Id + @"')
+                    insert into sqlfirstdatabase.employee (Id) values
+                    ('"+emp.EmpId + @"')
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -64,9 +64,9 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephonedb.employee set firstName =
+                    update sqlfirstdatabase.employee set firstName =
                     '" + emp.FirstName + @"'
-                    where Id="+emp.Id+@"
+                    where Id="+emp.EmpId+@"
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -90,7 +90,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    delete from ephonedb.employee
+                    delete from sqlfirstdatabase.employee
                     where Id=" + id + @"
                     ";
                 DataTable table = new DataTable();
@@ -115,7 +115,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetAllEmployees()
         {
             string query = @"
-                    select * from ephonedb.employee
+                    select * from sqlfirstdatabase.employee
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))

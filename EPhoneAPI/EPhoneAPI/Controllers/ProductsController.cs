@@ -20,7 +20,7 @@ namespace EPhoneAPI.Controllers
         {
             //Creating A connection to the MySQL server and sending a directly implemented query
             string query = @"
-                    select * from ephonedb.product
+                    select * from sqlfirstdatabase.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -39,7 +39,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephonedb.product (serialNum) values
+                    insert into sqlfirstdatabase.product (serialNum) values
                     ('" + pro.ItemNum + @"')
                     ";
                 DataTable table = new DataTable();
@@ -64,8 +64,8 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephonedb.product set name =
-                    '" + pro.Name + @"'
+                    update sqlfirstdatabase.product set name =
+                    '" + pro.ProductName + @"'
                     where serialNum=" + pro.ItemNum + @"
                     ";
                 DataTable table = new DataTable();
@@ -90,7 +90,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    delete from ephonedb.product
+                    delete from sqlfirstdatabase.product
                     where ItemNum=" + ItemNum + @"
                     ";
                 DataTable table = new DataTable();
@@ -115,7 +115,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetAllProducts()
         {
             string query = @"
-                    select * from ephonedb.product
+                    select * from sqlfirstdatabase.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -134,7 +134,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetSumOfProducts()
         {
             string query = @"
-                    select SUM(price) price from ephonedb.product
+                    select SUM(price) price from sqlfirstdatabase.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
@@ -153,7 +153,7 @@ namespace EPhoneAPI.Controllers
         public HttpResponseMessage GetCount()
         {
             string query = @"
-                    select COUNT(ItemNum) count from ephonedb.product
+                    select COUNT(ItemNum) count from sqlfirstdatabase.product
                     ";
             DataTable table = new DataTable();
             using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
