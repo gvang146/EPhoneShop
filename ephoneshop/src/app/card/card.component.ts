@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsComponent } from '../products/products.component';
 import { EphoneAPIService } from './../ephone-api.service';
+import { HttpService } from './../http.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.refreshProList();
   }
-  
+
   refreshProList(){
     this.service.getProList().subscribe(data => {
       this.ProductsList=data;

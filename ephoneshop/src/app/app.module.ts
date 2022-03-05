@@ -28,11 +28,11 @@ import { AddEditProComponent } from './products/add-edit-pro/add-edit-pro.compon
 import { ProductsComponent } from './products/products.component';
 import { EphoneAPIService } from './ephone-api.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -50,7 +50,8 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     ProductsComponent,
     ShowProComponent,
     AddEditProComponent,
-    ShowCheckoutComponent
+    ShowCheckoutComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
