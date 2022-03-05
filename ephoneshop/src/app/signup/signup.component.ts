@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EphoneAPIService } from '../ephone-api.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:EphoneAPIService) { }
+
+
+  FirstName:string="";
+  LastName:string="";
+  Email:string="";
+  pass:string="";
+
 
   ngOnInit(): void {
-    var hide = true;
   }
 
+  addCustomer(){
+    var val = { FirstName:this.FirstName,
+                LastName:this.LastName,
+                Email:this.Email,
+                pass:this.pass};
+    this.service.addCustomer(val).subscribe(res=>{
+      alert(res.toString());
+    });
+  }
 }

@@ -39,7 +39,7 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephonedb.product (serialNum) values
+                    insert into ephonedb.product (ItemNum) values
                     ('" + pro.ItemNum + @"')
                     ";
                 DataTable table = new DataTable();
@@ -64,9 +64,9 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    update ephonedb.product set name =
+                    update ephonedb.product set ProductName =
                     '" + pro.Name + @"'
-                    where serialNum=" + pro.ItemNum + @"
+                    where ItemNum=" + pro.ItemNum + @"
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))

@@ -39,8 +39,12 @@ namespace EPhoneAPI.Controllers
             try
             {
                 string query = @"
-                    insert into ephonedb.customer (Id) values
-                    ('" + cus.AccountNum + @"')
+                    insert into ephonedb.customer (LastName,FirstName,Email,pass) values
+                    (
+                    '" + cus.LastName + @"' 
+                    ,'" + cus.FirstName + @"' 
+                    ,'" + cus.Email + @"' 
+                    ,'" + cus.Password + @"')
                     ";
                 DataTable table = new DataTable();
                 using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["EPhone"].ConnectionString))
