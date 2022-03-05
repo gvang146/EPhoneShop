@@ -24,10 +24,11 @@ import { EphoneAPIService } from './ephone-api.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {HttpClientModule} from '@angular/common/http';
-
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
-
+import { FormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     ProductsComponent,
     ShowProComponent,
     AddEditProComponent,
-    ShowCheckoutComponent
+    ShowCheckoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +58,10 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     MatDividerModule,
     MatExpansionModule,
     HttpClientModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
-  providers: [EphoneAPIService],
+  providers: [EphoneAPIService, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

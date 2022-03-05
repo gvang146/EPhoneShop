@@ -4,26 +4,29 @@
 <head>
 
 </head>
-
 <body>
     <div clas="container">
         <mat-card>
             <mat-card-title>Login</mat-card-title>
             <div class="login-content">
-                <mat-card-content>
-                    <mat-form-field>
-                        <mat-label>E-mail</mat-label>
-                        <input formControlName="email" matInput>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Password</mat-label>
-                        <input formControlName="pass" type="password" matInput>
-                    </mat-form-field>
-                    <div class="btnGroup">
-                        <button mat-raised-button color="primary">Login</button>
-                        <button mat-raised-button color="primary">Sign-up</button>
-                    </div>
-                </mat-card-content>
+                <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <mat-card-content>
+                        <mat-form-field>
+                            <mat-label>E-mail</mat-label>
+                            <input type="text" name="email" class="form-control" [(ngModel)]="form.email" #email="ngModel" placeholder="E-mail" matInput required>
+                        </mat-form-field>
+                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid">E-mail is Required</div>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input minlength="6" class="form-control" type="text" name="password" class="form-control" [(ngModel)]="form.password" #password="ngModel" placeholder="Password" type="password" matInput required>
+                        </mat-form-field>
+                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid">Password is Required</div>
+                        <div class="btnGroup">
+                            <button mat-raised-button color="primary">Login</button>
+                            <a href="/signup" >Don't have an account? Sign-up</a>
+                        </div>
+                    </mat-card-content>
+                </form>
             </div>
         </mat-card>
         <!-- <div class="login-input">
