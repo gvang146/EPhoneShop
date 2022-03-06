@@ -6,68 +6,72 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EphoneAPIService {
-readonly APIUrl="http://localhost:60942/api";
+readonly APIUrl="https://localhost:7225/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private server :HttpClient) { }
 
-  getCusList():Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Customer');
+  GetAllProducts():Observable<any[]>
+  {
+    return this.server.get<any>(this.APIUrl + 'Product');
   }
+  // getCusList():Observable<any[]>{
+  //   return this.http.get<any>(this.APIUrl+'/Customer');
+  // }
 
-  addCustomer(val:any){
-    return this.http.post(this.APIUrl+'/Customer',val);
-  }
+  // addCustomer(val:any){
+  //   return this.http.post(this.APIUrl+'/Customer',val);
+  // }
 
-  updateCustomer(val:any){
-    return this.http.put(this.APIUrl+'/Customer',val);
-  }
+  // updateCustomer(val:any){
+  //   return this.http.put(this.APIUrl+'/Customer',val);
+  // }
 
-  deleteCustomer(val:any){
-    return this.http.delete(this.APIUrl+'/Customer/'+val);
-  }
+  // deleteCustomer(val:any){
+  //   return this.http.delete(this.APIUrl+'/Customer/'+val);
+  // }
 
-  getEmpList():Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Employee');
-  }
+  // getEmpList():Observable<any[]>{
+  //   return this.http.get<any>(this.APIUrl+'/Employee');
+  // }
 
-  addEmployee(val:any){
-    return this.http.post(this.APIUrl+'/Employee',val);
-  }
+  // addEmployee(val:any){
+  //   return this.http.post(this.APIUrl+'/Employee',val);
+  // }
 
-  updateEmployee(val:any){
-    return this.http.put(this.APIUrl+'/Employee',val);
-  }
+  // updateEmployee(val:any){
+  //   return this.http.put(this.APIUrl+'/Employee',val);
+  // }
 
-  deleteEmployee(val:any){
-    return this.http.delete(this.APIUrl+'/Employee/'+val);
-  }
+  // deleteEmployee(val:any){
+  //   return this.http.delete(this.APIUrl+'/Employee/'+val);
+  // }
 
-  getProList():Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Products');
-  }
+  // getProList():Observable<any[]>{
+  //   return this.http.get<any>(this.APIUrl+'/Products');
+  // }
 
-  addProducts(val:any){
-    return this.http.post(this.APIUrl+'/Products',val);
-  }
+  // addProducts(val:any){
+  //   return this.http.post(this.APIUrl+'/Products',val);
+  // }
 
-  updateProducts(val:any){
-    return this.http.put(this.APIUrl+'/Products',val);
-  }
+  // updateProducts(val:any){
+  //   return this.http.put(this.APIUrl+'/Products',val);
+  // }
 
-  deleteProducts(val:any){
-    return this.http.delete(this.APIUrl+'/Products/'+val);
-  }
+  // deleteProducts(val:any){
+  //   return this.http.delete(this.APIUrl+'/Products/'+val);
+  // }
 
 
-  getSumOfProducts():Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Products/GetSumOfProducts')
-  }
+  // getSumOfProducts():Observable<any[]>{
+  //   return this.http.get<any>(this.APIUrl+'/Products/GetSumOfProducts')
+  // }
 
-  getCount():Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Products/GetCount')
-  }
+  // getCount():Observable<any[]>{
+  //   return this.http.get<any>(this.APIUrl+'/Products/GetCount')
+  // }
 
-  getAllProducts():Observable<any[]>{
-    return this.http.get<any>(this.APIUrl+'/Products/GetAllProducts');
-  }
+  // getAllProducts():Observable<any[]>{
+  //   return this.http.get<any>(this.APIUrl+'/Products/GetAllProducts');
+  // }
 }
