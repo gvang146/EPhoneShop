@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EphoneAPIService } from '../ephone-api.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +10,7 @@ import { EphoneAPIService } from '../ephone-api.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private service:EphoneAPIService) { }
+  constructor(private service:EphoneAPIService,private route:Router) { }
 
 
   FirstName:string="";
@@ -26,7 +28,9 @@ export class SignupComponent implements OnInit {
                 Email:this.Email,
                 pass:this.pass};
     this.service.addCustomer(val).subscribe(res=>{
-      alert(res.toString());
+      alert("Welcome " + this.FirstName + "! Please browse for a product you want.");
     });
+
+    this.route.navigate(['/products']);
   }
 }
