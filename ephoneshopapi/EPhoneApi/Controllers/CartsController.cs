@@ -51,6 +51,13 @@ public class CartsController : ControllerBase
         
 
     }
+    [HttpGet]
+    public IActionResult GetCartDetails(string id)
+    {
+        CartsEntity entity = new CartsEntity();
+        entity = _cartRepo.GetCartDetail(id);
+        return Ok(entity);
+    }
 
     //This delete cart items
     [HttpDelete]
