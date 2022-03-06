@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 export class EphoneAPIService {
 readonly APIUrl="https://localhost:7225/";
 
-  constructor(private server :HttpClient) { }
+  constructor(private service :HttpClient) { }
 
   GetAllProducts():Observable<any[]>
   {
-    return this.server.get<any>(this.APIUrl + 'Product');
+    return this.service.get<any>(this.APIUrl + 'Product');
   }
   // getCusList():Observable<any[]>{
   //   return this.http.get<any>(this.APIUrl+'/Customer');
