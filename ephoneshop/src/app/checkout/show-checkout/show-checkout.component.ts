@@ -17,7 +17,7 @@ export class ShowCheckoutComponent implements OnInit {
   }
 
   refreshProList(){
-    this.service.getProList().subscribe(data=>{
+    this.service.GetAllProducts().subscribe(data=>{
       this.ProductsList=data;
     })
   }
