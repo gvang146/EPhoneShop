@@ -8,6 +8,7 @@ namespace EPhoneAPI.Models
     public class Products
     {
         public int ItemNum { get; set; }
+        public int serialNum { get; set; }
         public string ProductName { get; set; }
         public string Colors { get; set; }
         public string Features { get; set; }

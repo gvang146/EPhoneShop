@@ -8,7 +8,7 @@
                 <mat-label class="label">Processors</mat-label>
                 <mat-divider></mat-divider>
                 <mat-selection-list #Processors>
-                    <mat-list-option *ngFor="let processor of typesOfProcessors">
+                    <mat-list-option *ngFor="let processor of filterCategory | filter:searchKey:'title'">
                         {{processor}}
                     </mat-list-option>
                 </mat-selection-list>

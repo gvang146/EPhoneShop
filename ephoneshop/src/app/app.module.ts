@@ -33,6 +33,9 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
+import { FilterPipe } from './shared/filter.pipe';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -50,7 +53,8 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     ProductsComponent,
     ShowProComponent,
     AddEditProComponent,
-    ShowCheckoutComponent
+    ShowCheckoutComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,8 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     MatDividerModule,
     MatExpansionModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatCheckboxModule
   ],
   providers: [EphoneAPIService],

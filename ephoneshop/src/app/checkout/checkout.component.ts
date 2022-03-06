@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { EphoneAPIService } from 'src/app/ephone-api.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { EphoneAPIService } from 'src/app/ephone-api.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+
+  public search = new BehaviorSubject<string>("");
 
   constructor(private service:EphoneAPIService) { }
 
