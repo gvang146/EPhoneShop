@@ -62,14 +62,15 @@ public class UserRepository : IUserRepository
     public UserEntity GetUserByEmail(string email)
     {
         UserEntity userEntity = null;
-        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
+        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            conn.Open();
+            connect.Open();
             
             var sql = "select * from users where email=@email";
             
-            using var cmd = new MySqlCommand(sql, conn);
+            using var cmd = new MySqlCommand(sql, connect);
+            //Paramter binding
             var userEmail = new MySqlParameter("@email", MySqlDbType.VarChar, 36)
             {
                 Value = email
@@ -93,7 +94,7 @@ public class UserRepository : IUserRepository
                 userEntity = new UserEntity(table.Rows[0]);
             }
             
-            conn.Close();
+            connect.Close();
         }
         catch (Exception e)
         {
@@ -106,15 +107,15 @@ public class UserRepository : IUserRepository
     public bool AddUser(UserEntity entity)
     {
         bool success = false;
-        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
+        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            conn.Open();
+            connect.Open();
             
             var sql = "insert into users (id, firstname, lastname, email, passwordhash, passwordsalt) " +
                       "values (@id, @firstName, @lastName, @email, @passwordHash, @passwordSalt)";
             
-            using var cmd = new MySqlCommand(sql, conn);
+            using var cmd = new MySqlCommand(sql, connect);
             
             var userId = new MySqlParameter("@id", MySqlDbType.VarChar, 36) { Value = entity.Id };
             cmd.Parameters.Add(userId);
@@ -146,7 +147,7 @@ public class UserRepository : IUserRepository
                 // log error
             }
 
-            conn.Close();
+            connect.Close();
         }
         catch (Exception e)
         {
@@ -159,15 +160,15 @@ public class UserRepository : IUserRepository
     public bool UpdateUser(UserEntity entity)
     {
         bool success = false;
-        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
+        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            conn.Open();
+            connect.Open();
 
             var sql = "update users set firstname=@firstName, lastname=@lastName, passwordHash=@passwordHash, passwordSalt=@passwordSal " +
                       "where id=@id";
 
-            using var cmd = new MySqlCommand(sql, conn);
+            using var cmd = new MySqlCommand(sql, connect);
 
             var firstName = new MySqlParameter("@firstName", MySqlDbType.VarChar, 100) {Value = entity.FirstName};
             cmd.Parameters.Add(firstName);
@@ -199,7 +200,7 @@ public class UserRepository : IUserRepository
                 // log error
             }
 
-            conn.Close();
+            connect.Close();
         }
         catch (Exception e)
         {
