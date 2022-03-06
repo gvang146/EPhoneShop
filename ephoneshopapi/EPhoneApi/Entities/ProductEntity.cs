@@ -11,7 +11,7 @@ public class ProductEntity
     public string Color { get; set; }
     public string Processors { get; set; }
     public string Speed { get; set; }
-    public string Price { get; set; }
+    public decimal Price { get; set; }
 
     public ProductEntity()
     {
@@ -26,6 +26,6 @@ public class ProductEntity
         Color = Convert.ToString(row["Color"]);
         Processors = Convert.ToString(row["Processors"]);
         Speed = Convert.ToString(row["Speed"]);
-        Price = Convert.ToString(row["Price"]);
+        Price = Convert.ToDecimal(row["Price"]);
     }
 }

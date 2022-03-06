@@ -24,6 +24,8 @@ builder.Services.AddSwaggerGen();
     // configure DI for application services
     services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
     services.AddScoped<IUserRepository, UserRepository>();
+    services.AddScoped<IProductRepository, ProductRepository>();
+    services.AddScoped<ICartsRepository, CartsRepository>();
 }
 
 var app = builder.Build();
