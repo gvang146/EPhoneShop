@@ -1,14 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div clas="container">
-    <div class="cart">
-        <mat-card *ngFor="let cartItem of cartList">
-            <mat-card-title><button mat-raised-button color="primary" (click)="GetCartItems(currentUser.Id)"><mat-icon>add_shopping_cart</mat-icon> Shopping Cart </button></mat-card-title>
-            <mat-card-content >
-               {{cartItem}}
-               <a type="button" href="/checkout" mat-raised-button color="primary">Check-out</a>
-            </mat-card-content>
-        </mat-card>
-   </div> 
     <div class="filter">
         <mat-label>Filter By Features</mat-label>
         <mat-divider></mat-divider>
@@ -67,4 +58,14 @@
             </mat-card> 
         </div>
     </div>
+    <div class="cart">
+        <div *ngFor="let cartItem of cartList">
+            <mat-label><mat-icon>add_shopping_cart</mat-icon> Shopping Cart </mat-label>
+            <div >
+                <button mat-raised-button color="primary" (click)="GetCartItems(currentUser.Id)"><mat-icon>refresh</mat-icon></button>
+               {{cartItem.productId}} {{cartItem.quatity}}
+               <a type="button" href="/checkout" mat-raised-button color="primary">Check-out</a>
+            <div>
+        </div>
+   </div> 
 </div>
