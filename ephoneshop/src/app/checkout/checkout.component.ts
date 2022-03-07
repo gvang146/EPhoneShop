@@ -17,21 +17,8 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshProList();
-    // this.refreshProSum();
-    // this.refreshCount();
   }
 
-  // refreshCount(){
-  //   this.service.getCount().subscribe(data=>{
-  //     this.ProductCount=data;
-  //   })
-  // }
-
-  // refreshProSum(){
-  //   this.service.getSumOfProducts().subscribe(data=>{
-  //     this.ProductSum=data;
-  //   })
-  // }
 
   refreshProList(){
     this.service.GetAllProducts().subscribe(data=>{

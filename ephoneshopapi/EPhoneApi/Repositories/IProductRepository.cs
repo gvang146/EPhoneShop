@@ -5,10 +5,10 @@ namespace EPhoneApi.Repositories;
 public interface IProductRepository
 {
     public List<ProductEntity> GetAllProducts();
-    public ProductEntity GetProductByBrand(string brand);
-    public ProductEntity GetProductByProcessors(string processor);
-    public ProductEntity GetProductByPrice(string price);
-    public ProductEntity GetProductBySpeed(string speed);
+    public List<ProductEntity> GetProductByBrand(string brand);
+    public List<ProductEntity> GetProductByProcessors(string processor);
+    public List<ProductEntity> GetProductByPrice(string price);
+    public List<ProductEntity> GetProductBySpeed(string speed);
 
 }
 
