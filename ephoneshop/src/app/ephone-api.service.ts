@@ -70,4 +70,8 @@ readonly APIUrl="http://localhost:60942/api";
   getAllProducts():Observable<any[]>{
     return this.http.get<any>(this.APIUrl+'/Products/GetAllProducts');
   }
+  postContactInfo(info: any)
+  {
+    return this.http.post(this.APIUrl +'/Home/Post', info );
+}
 }

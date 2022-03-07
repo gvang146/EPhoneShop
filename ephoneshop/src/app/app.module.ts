@@ -33,7 +33,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -68,7 +68,8 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     MatDividerModule,
     MatExpansionModule,
     HttpClientModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [EphoneAPIService],
   bootstrap: [AppComponent]
