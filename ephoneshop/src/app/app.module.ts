@@ -33,6 +33,9 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
+import { SignupService } from './_services/SignupService.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -68,9 +71,12 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
     MatDividerModule,
     MatExpansionModule,
     HttpClientModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSnackBarModule
   ],
-  providers: [EphoneAPIService],
+  providers: [EphoneAPIService,SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
