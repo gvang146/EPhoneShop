@@ -174,12 +174,12 @@ public class ProductRepository : IProductRepository
         {
             connect.Open();
 
-            var sql = "select * from product where processor=@processor";
+            var sql = "select * from product where processors=@processors";
 
             // creating command
             using var cmd = new MySqlCommand(sql, connect);
             //inserting params
-            var procParam = new MySqlParameter("@processor", MySqlDbType.VarChar, 36)
+            var procParam = new MySqlParameter("@processors", MySqlDbType.VarChar, 36)
             {
                 Value = processor
             };
@@ -205,9 +205,7 @@ public class ProductRepository : IProductRepository
                     prodList.Add(entity);
 
                 }
-
             }
-
             connect.Close();
         }
         catch (Exception ex)
