@@ -4,19 +4,13 @@
         <a type="button" href="/products" mat-button>Products</a>
         <a type="button" href="/developer" mat-button>Developers</a>
         <span class="spacer"></span>
-        <div *ngIf="isLoggedIn; then LoggedOn ; else LoggedOff">
+        <div *ngIf="isLoggedIn; then LoggedOn; else LoggedOff">
         </div>
     </mat-toolbar>
 </div>
-
 <ng-template #LoggedOn>
-    <div *ngif="loading" class="spinner-border spinner-border-sm">
-        <div *ngIf="users">
-            <mat-label *ngIf="let user of users">Welcome! </mat-label>
-            <button mat-button>Log out</button>
-        </div>
-    </div>
-    
+    <mat-label >Welcome! </mat-label>
+    <button (click)="logout()" mat-button>Log out</button>
 </ng-template>
 <ng-template #LoggedOff>
     <a href="/login" type="button" mat-button color="secondary">Login</a>

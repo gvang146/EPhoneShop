@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 
 namespace EPhoneApi.Entities;
 
@@ -12,7 +12,7 @@ public class ProductEntity
     public string Processors { get; set; }
     public string Speed { get; set; }
     public double Price { get; set; }
-
+    
     public ProductEntity()
     {
     }

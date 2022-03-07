@@ -24,10 +24,10 @@ builder.Services.AddSwaggerGen();
     // configure DI for application services
     services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
     services.AddScoped<IUserRepository, UserRepository>();
-    services.AddScoped<IProductRepository, ProductRepository>();
-    services.AddScoped<ICartsRepository, CartsRepository>();
     services.AddScoped<IUserAddressRepository, UserAddressRepository>();
     services.AddScoped<IOrderRepository, OrderRepository>();
+    services.AddScoped<IProductRepository, ProductRepository>();
+    services.AddScoped<ICartsRepository, CartsRepository>();
 }
 
 var app = builder.Build();
@@ -38,9 +38,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-//app.UseHttpsRedirection();
-//app.UseAuthorization();
 
 // global cors policy
 app.UseCors(x => x

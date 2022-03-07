@@ -14,7 +14,7 @@
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <mat-form-field>
                             <mat-label>E-mail</mat-label>
-                            <input [ngClass]="{ 'is-invalid': submitted && f['Username'].errors }" formControlName="Email" matInput required>
+                            <input [ngClass]="{ 'is-invalid': submitted && f['Username'].errors }" formControlName="Username" matInput required>
                             <div *ngIf="submitted && f['Username'].errors" class="invalid-feedback">
                                 <div *ngIf="f['Username'].errors['required']">Email is required</div>
                             </div>

@@ -1,22 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using EPhoneApi.Services;
-using EPhoneApi.Util;
-using Microsoft.AspNetCore.Mvc;
 using EPhoneApi.Repositories;
 using EPhoneApi.Entities;
 
 namespace EPhoneApi.Controllers;
 
-    
-    [ApiController]
-    [Route("[controller]")]
+[ApiController]
+[Route("[controller]")]
 public class ProductController : ControllerBase
 {
     private IProductRepository _prodRepo;
-    public ProductController (IProductRepository proRepo)
+
+    public ProductController(IProductRepository proRepo)
     {
         _prodRepo = proRepo;
     }
+
     [HttpGet]
     public IActionResult GetAllProducts()
     {
@@ -24,9 +22,4 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetAllProducts();
         return Ok(prodList);
     }
-
-            
-
-
 }
-

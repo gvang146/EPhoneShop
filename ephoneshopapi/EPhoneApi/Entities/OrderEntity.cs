@@ -4,8 +4,6 @@ public class OrderEntity
 {
     public string Id { get; set; }
     public string UserId { get; set; }
-    //public string ShippingAddressId { get; set; }
-    //public string BillingAddressId { get; set; }
     public string Status { get; set; }
     public DateTime OrderDate { get; set; }
     public DateTime PaymentDate { get; set; }

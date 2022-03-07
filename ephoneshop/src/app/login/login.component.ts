@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../_services/authentication.service';
+import { LoginMessageService } from '../_services/LoginMessage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  isLoggedIn: boolean;
   loginForm : any;
   loading = false;
   submitted = false;
@@ -18,7 +20,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private loginMessageService: LoginMessageService
 
   ) { 
     if (this.authService.currentUserValue){
@@ -28,11 +31,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group ({
-      Email: ['', Validators.required],
+      Username: ['', Validators.required],
       Password: ['', Validators.required]
     });
   }
-
+ngOnDdestroy():void
+{
+  
+}
   get f() {return this.loginForm.controls}
   onSubmit()
   {
@@ -49,6 +55,7 @@ export class LoginComponent implements OnInit {
       next: () => {
         // get reutrn url from route paramters or defaults to '/'
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.loginMessageService.updateMessage(true);
         this.router.navigate([returnUrl]);
       },
       error: error => {

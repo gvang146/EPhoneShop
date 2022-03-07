@@ -32,7 +32,7 @@ public class UserAuthenticationService : IUserAuthenticationService
         }
         var token = GenerateJwtToken(userEntity);
 
-        return new AuthenticateResponse(token);
+        return new AuthenticateResponse(userEntity, token);
     }
 
     public IUserRepository Repos => _repository;

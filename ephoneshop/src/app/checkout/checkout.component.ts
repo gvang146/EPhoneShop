@@ -14,6 +14,7 @@ export class CheckoutComponent implements OnInit {
   ProductSum:any=[];
   ProductCount:any=[];
 
+
   ngOnInit(): void {
     this.refreshProList();
     // this.refreshProSum();
@@ -36,5 +37,9 @@ export class CheckoutComponent implements OnInit {
     this.service.GetAllProducts().subscribe(data=>{
       this.ProductsList=data;
     })
+  }
+  onSubmit()
+  {
+    
   }
 }

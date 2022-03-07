@@ -162,7 +162,7 @@ public class OrderRepository : IOrderRepository
                     {
                         Id = Convert.ToString(row["details_id"]),
                         Status = Convert.ToString(row["details_status"]),
-                        Price = Convert.ToDecimal(row["price"]),
+                        Price = Convert.ToDouble(row["price"]),
                         Quantity = Convert.ToInt32(row["quantity"]),
                         ShipDate = Convert.ToDateTime(row["shipdate"]),
                         Product = new ProductEntity
