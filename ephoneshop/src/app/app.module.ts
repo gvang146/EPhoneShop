@@ -36,6 +36,7 @@ import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.co
 import { SignupService } from './_services/SignupService.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { UserService } from './_services/UserLoginService.service';
 
 
 @NgModule({
@@ -76,7 +77,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     FormsModule,
     MatSnackBarModule
   ],
-  providers: [EphoneAPIService,SignupService],
+  providers: [EphoneAPIService,SignupService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

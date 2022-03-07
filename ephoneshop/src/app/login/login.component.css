@@ -39,3 +39,8 @@ mat-card-content
     flex-direction: column;
     min-width: 340px;
 }
+form
+{
+    display: flex;
+    flex-direction: column;
+}

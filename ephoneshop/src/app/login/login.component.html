@@ -11,18 +11,30 @@
             <mat-card-title>Login</mat-card-title>
             <div class="login-content">
                 <mat-card-content>
-                    <mat-form-field>
-                        <mat-label>E-mail</mat-label>
-                        <input formControlName="email" matInput>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Password</mat-label>
-                        <input formControlName="pass" type="password" matInput>
-                    </mat-form-field>
-                    <div class="btnGroup">
-                        <button mat-raised-button color="primary">Login</button>
-                        <button mat-raised-button color="primary">Sign-up</button>
-                    </div>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <mat-form-field>
+                            <mat-label>E-mail</mat-label>
+                            <input [ngClass]="{ 'is-invalid': submitted && f['Username'].errors }" formControlName="Email" matInput required>
+                            <div *ngIf="submitted && f['Username'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Username'].errors['required']">Email is required</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input [ngClass]="{ 'is-invalid': submitted && f['Password'].errors }" formControlName="Password" type="password" matInput required>
+                            <div *ngIf="submitted && f['Password'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Password'].errors['required']">Password is required</div>
+                            </div>
+                        </mat-form-field>
+                        <div class="btnGroup">
+                            <button [disabled]="loading" type="submit" mat-raised-button color="primary">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                Login
+                            </button>
+                            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                            <a href="/signup">Don't have an account? Sign-up</a>
+                        </div>
+                    </form>
                 </mat-card-content>
             </div>
         </mat-card>

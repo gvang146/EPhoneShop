@@ -20,6 +20,8 @@ const routes: Routes = [
   { path: 'developer', component: DeveloperComponent},
   { path: '', component: HomeComponent},
   { path: 'signup', component: SignupComponent},
+  //otherwise redirect to home
+  {path: '**', redirectTo:''}
 ];
 
 @NgModule({
