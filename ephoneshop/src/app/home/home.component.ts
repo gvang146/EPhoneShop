@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 declare var $: any;
 declare var responsive_menu: any;
@@ -14,6 +14,9 @@ declare var responsive_menu: any;
 export class HomeComponent  implements OnInit {
   name = 'Jquery Integration With Angular!';
   isJqueryWorking: any;
+  @ViewChild('name') inputName: any;
+  @ViewChild('email') inputEmail: any;
+  @ViewChild('message') inputMessage: any;
   ngOnInit()
   {
 
@@ -23,7 +26,10 @@ export class HomeComponent  implements OnInit {
    getUserContactInfo(info: any) {
     //this.service.postContactInfo(info);
     console.warn(info);
-    alert("We have recieved your message " + info.Name);
+     alert("We have recieved your message " + info.Name);
+     this.inputName.nativeElement.value = ' ';
+     this.inputEmail.nativeElement.value = ' ';
+     this.inputMessage.nativeElement.value = ' ';
   }
 
 }

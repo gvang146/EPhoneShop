@@ -117,15 +117,15 @@ body {font-size:16px;}
   <form #contactForm="ngForm" (ngSubmit)="getUserContactInfo(contactForm.value)">
     <div class="PA-section">
       <label>Name</label>
-      <input class="PA-input PA-border" type="text" ngModel name="Name" placeholder="Enter Name" required>
+      <input class="PA-input PA-border" type="text" #name ngModel name="Name" placeholder="Enter Name" required>
     </div>
     <div class="PA-section">
       <label>Email</label>
-      <input class="PA-input PA-border" type="text" ngModel name="Email" placeholder="Enter Email" required>
+      <input class="PA-input PA-border" type="text" #email ngModel name="Email" placeholder="Enter Email" required>
     </div>
     <div class="PA-section">
       <label>Message</label>
-      <input class="PA-input PA-border" type="text" ngModel name="Message" placeholder="Enter Message" required>
+      <input class="PA-input PA-border" type="text" #message ngModel name="Message" placeholder="Enter Message" required>
     </div>
     <button type="submit" class="PA-button PA-block PA-padding-large PA-purple PA-margin-bottom">Send Message</button>
   </form>
