@@ -14,14 +14,16 @@ public class CartsRepository : ICartsRepository
     {
         _appSettings = appSettings.Value;
     }
+    
     public Boolean AddItemToCart(CartsEntity entity)
     {
+        var success = false;
         using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
             conn.Open();
             //creating the string
-            var sql = "insert into Cart(Id, UserId, ProductId) values (@Id, @UserId, @ProductId)";
+            var sql = "insert into Cart(Id, UserId, ProductId, quantity) values (@Id, @UserId, @ProductId, @quantity)";
 
             using var cmd = new MySqlCommand(sql, conn);
             var idParam = new MySqlParameter("@id", MySqlDbType.VarChar, 36)
@@ -40,22 +42,10 @@ public class CartsRepository : ICartsRepository
             };
             cmd.Parameters.Add(productIdParam);
 
-            using var adapter = new MySqlDataAdapter(cmd);
-            var table = new DataTable();
+            cmd.Parameters.Add("@quantity", MySqlDbType.Int32).Value = entity.Quantity;
 
-            try
-            {
-                adapter.Fill(table);
-            }
-            catch (InvalidOperationException e)
-            {
-                // log error
-            }
-
-            if (table.Rows.Count > 0)
-            {
-                entity = new CartsEntity(table.Rows[0]);
-            }
+            cmd.ExecuteNonQuery();
+            success = true;
 
             conn.Close();
         }
@@ -63,13 +53,13 @@ public class CartsRepository : ICartsRepository
         {
             // Log error
         }
-        return true;
+        return success;
     }
 
     //Delete from cart
     public Boolean DeleteCartItem(string id)
     {
-        CartsEntity entity = null;
+        var success = false;
         using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
@@ -84,8 +74,9 @@ public class CartsRepository : ICartsRepository
             };
             cmd.Parameters.Add(idParam);
             cmd.ExecuteNonQuery();
-            
 
+            success = true;
+            
             conn.Close();
         }
         catch (Exception e)
@@ -93,7 +84,7 @@ public class CartsRepository : ICartsRepository
             // Log error
         }
 
-        return true;
+        return success;
     }
     //GetCartDetails
     public CartsEntity GetCartDetail(string id)
@@ -147,16 +138,16 @@ public class CartsRepository : ICartsRepository
         {
             conn.Open();
             //create query string
-            var sql = "update carts set Quantity=@quantity where ProductId=@producId";
+            var sql = "update carts set Quantity=@quantity where id=@id";
             using var cmd = new MySqlCommand(sql, conn);
             var quantity = new MySqlParameter("@quantity", MySqlDbType.Int32)
             {
                 Value = entity.Quantity
             };
             cmd.Parameters.Add(quantity);
-            var id = new MySqlParameter("@productId", MySqlDbType.VarChar, 32)
+            var id = new MySqlParameter("@id", MySqlDbType.VarChar, 32)
             {
-                Value = entity.ProductId
+                Value = entity.Id
             };
             cmd.Parameters.Add(id);
             cmd.ExecuteNonQuery();
@@ -180,12 +171,12 @@ public class CartsRepository : ICartsRepository
         {
             var sql = "select * from carts where UserId = @userId and ProductId=@productId";
             using var cmd = new MySqlCommand(sql, conn);
-            var userIdParam = new MySqlParameter("userId", MySqlDbType.VarChar, 32)
+            var userIdParam = new MySqlParameter("@userId", MySqlDbType.VarChar, 32)
             {
                 Value = userId
             };
             cmd.Parameters.Add(userIdParam);
-            var pIdParam = new MySqlParameter("productId", MySqlDbType.VarChar, 32)
+            var pIdParam = new MySqlParameter("@productId", MySqlDbType.VarChar, 32)
             {
                 Value = productId
             };
@@ -211,6 +202,72 @@ public class CartsRepository : ICartsRepository
             Console.WriteLine(ex.Message);
         }
         return entity;
+    }
+
+    public IList<CartsEntity> GetAllCartItems(string userId)
+    {
+        IList<CartsEntity> entities = new List<CartsEntity>();
+
+        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
+        try
+        {
+            conn.Open();
+            
+            var sql = "select * from carts where userid=@userId";
+            using var cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@userId", MySqlDbType.VarChar, 36).Value = userId;
+
+            var table = new DataTable();
+            using var adapter = new MySqlDataAdapter(cmd);
+
+            try
+            {
+                adapter.Fill(table);
+            }
+            catch (InvalidOperationException e)
+            {
+                // log error
+            }
+
+            foreach (DataRow row in table.Rows)
+            {
+                entities.Add(new CartsEntity(row));
+            }
+            
+            conn.Close();
+        }
+        catch (Exception e)
+        {
+            // log error
+        }
+
+        return entities;
+    }
+
+    public bool DeleteAllCartItems(string userId)
+    {
+        var success = false;
+
+        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
+        try
+        {
+            conn.Open();
+
+            var sql = "delete from carts where userid=@userId";
+            using var cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@userId", MySqlDbType.VarChar, 36).Value = userId;
+
+            cmd.ExecuteNonQuery();
+            success = true;
+            
+            conn.Close();
+        }
+        catch (Exception e)
+        {
+            // log error
+        }
+        
+        return success;
     }
 }
 

@@ -17,21 +17,23 @@ public class CartsController : ControllerBase
     {
         _cartRepo = cartRepo;
     }
+
     //This will add to cart
     //add to cart and update base on productId
     [HttpPost]
     public IActionResult AddItemToCart(CartInfo cartinfo)
     {
         bool success = false;
-        var userId = (string)HttpContext.Items["UserId"]; //get user id from token   
+        var userId = (string) HttpContext.Items["UserId"]; //get user id from token   
         var cartEntity = _cartRepo.GetCart(userId, cartinfo.ProductId);
         if (cartEntity == null)
         {
-            cartEntity = new CartsEntity()
+            cartEntity = new CartsEntity
             {
                 Id = Guid.NewGuid().ToString().ToLower(),
                 ProductId = cartinfo.ProductId,
-                UserId = userId
+                UserId = userId,
+                Quantity = 1
             };
             success = _cartRepo.AddItemToCart(cartEntity);
         }
@@ -40,22 +42,22 @@ public class CartsController : ControllerBase
             cartEntity.Quantity += 1;
             success = _cartRepo.UpdateCartItem(cartEntity);
         }
+
         if (success)
         {
             return Ok();
         }
         else
         {
-            return BadRequest(new { Message = "Error Updating and Adding to Cart" });
+            return BadRequest(new {Message = "Error Updating and Adding to Cart"});
         }
-        
-
     }
+
     [HttpGet]
+    [Route("{id}")]
     public IActionResult GetCartDetails(string id)
     {
-        CartsEntity entity = new CartsEntity();
-        entity = _cartRepo.GetCartDetail(id);
+        var entity = _cartRepo.GetCartDetail(id);
         return Ok(entity);
     }
 
@@ -67,10 +69,7 @@ public class CartsController : ControllerBase
         {
             return Ok();
         }
-        return BadRequest(new { Message = "Error Removing Item from Cart" });
-        
-    }
-    
-    
 
+        return BadRequest(new {Message = "Error Removing Item from Cart"});
+    }
 }

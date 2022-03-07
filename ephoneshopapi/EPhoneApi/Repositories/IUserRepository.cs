@@ -4,8 +4,8 @@ namespace EPhoneApi.Repositories;
 
 public interface IUserRepository
 {
-    public UserEntity GetUserById(string id);
-    public UserEntity GetUserByEmail(string email);
-    public bool AddUser(UserEntity entity);
-    public bool UpdateUser(UserEntity entity);
+    UserEntity GetUserById(string id);
+    UserEntity GetUserByEmail(string email);
+    bool AddUser(UserEntity entity);
+    bool UpdateUser(UserEntity entity);
 }

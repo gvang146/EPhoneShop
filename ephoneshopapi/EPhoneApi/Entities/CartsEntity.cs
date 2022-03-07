@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 
 namespace EPhoneApi.Entities;
 
@@ -7,7 +7,7 @@ public class CartsEntity
     public string Id { get; set; }
     public string UserId { get; set; }
     public string ProductId { get; set; }
-    public string Quantity { get; set; }
+    public int Quantity { get; set; }
 
     public CartsEntity()
     {
@@ -15,10 +15,9 @@ public class CartsEntity
 
     public CartsEntity(DataRow row)
     {
-        Id = Convert.ToString(row["Id"]);
-        UserId = Convert.ToString(row["UserId"]);
-        ProductId = Convert.ToString(row["ProductId"]);
-        Quantity = Convert.ToString(row["Quantity"]);
-        
+        Id = Convert.ToString(row["id"]);
+        UserId = Convert.ToString(row["userid"]);
+        ProductId = Convert.ToString(row["productid"]);
+        Quantity = Convert.ToInt32(row["quantity"]);
     }
 }

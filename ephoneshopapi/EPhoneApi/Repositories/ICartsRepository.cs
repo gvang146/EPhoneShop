@@ -9,4 +9,7 @@ public interface ICartsRepository
     public CartsEntity GetCartDetail(string id);
     public Boolean UpdateCartItem(CartsEntity entity);
     public CartsEntity GetCart(string userId, string productId);
+
+    IList<CartsEntity> GetAllCartItems(string userId);
+    bool DeleteAllCartItems(string userId);
 }
