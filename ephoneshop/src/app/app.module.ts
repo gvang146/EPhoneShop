@@ -36,6 +36,7 @@ import { SignupService } from './_services/SignupService.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UserService } from './_services/UserLoginService.service';
+import { AuthGuard } from './_utilities/auth.guard';
 
 
 @NgModule({
@@ -75,7 +76,7 @@ import { UserService } from './_services/UserLoginService.service';
     FormsModule,
     MatSnackBarModule
   ],
-  providers: [EphoneAPIService,SignupService,UserService],
+  providers: [EphoneAPIService,SignupService,UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

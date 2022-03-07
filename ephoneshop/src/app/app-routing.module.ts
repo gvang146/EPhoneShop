@@ -9,11 +9,12 @@ import { SignupComponent } from './signup/signup.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AuthGuard } from './_utilities/auth.guard';
 
 
 const routes: Routes = [
   { path: 'products', component: ProductsComponent},
-  { path: 'checkout', component: CheckoutComponent},
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   { path: 'employee', component: EmployeeComponent},
   { path: 'customer', component: CustomerComponent},
   { path: 'login', component: LoginComponent},
