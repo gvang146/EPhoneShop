@@ -174,7 +174,7 @@ public class ProductRepository : IProductRepository
         {
             connect.Open();
 
-            var sql = "select * from product where proccessor=@proccessor";
+            var sql = "select * from product where processor=@processor";
 
             // creating command
             using var cmd = new MySqlCommand(sql, connect);
