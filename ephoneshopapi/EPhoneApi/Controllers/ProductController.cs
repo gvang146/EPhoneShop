@@ -22,7 +22,8 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetAllProducts();
         return Ok(prodList);
     }
-    [HttpGet("brand")]
+    [HttpGet]
+    [Route("brand/{value}")]
     public IActionResult GetProductByBrand(string value)
     {
         List<ProductEntity> prodList = new List<ProductEntity>();

@@ -12,20 +12,27 @@ import { EphoneAPIService } from '../ephone-api.service';
 //creating task export for checkboxes
 
 export class ProductsComponent implements OnInit {
+  
   ProductsList:any=[];
-  filteredProducts: string[];
+  filteredProducts: any[];
   private _filterWord : string;
+  
   //Getter for the word
   get filterWord(): string {
     return this._filterWord;
   }
+  
   //setter for the work and callnig the method
   set filterWord(value: string)
   {
     this._filterWord = value;
     //this.filteredProducts = this.filteredProducts(value);
   }
+  
+  
   constructor(private service: EphoneAPIService) { }
+  
+  
   typesOfProcessors: string[] = 
   [ 
     'Level 1 Processor', 
@@ -36,12 +43,12 @@ export class ProductsComponent implements OnInit {
 ];
   typesOfBrand: string[] = 
   [
-    'Thamsung',
-    'Doogle',
-    'Universe',
-    'PG',
+    'YouPhone',
+    'DamSun',
+    'SoldyerSystem',
+    'Notkia',
     'Enginerola',
-    'Dokia'
+    'Froogle'
   ];
   typesOfSpeed: string[] = 
   [ 
@@ -53,21 +60,38 @@ export class ProductsComponent implements OnInit {
   [
     '$900+',
     '$800+',
-    '4700+',
+    '$700+',
     '$600+',
     '$500+',
     '$400+',
-    '#300-'
+    '$300-'
   ];
+  
   ngOnInit(): void {
     this.refreshProList();
   }
   
+  selectedBrands:string[];
+
+  filterBrand(selectedBrands:string[]){
+    //console.log(selectedBrands);
+    //console.log(this.ProductsList);
+    if(selectedBrands.length==0){
+      this.refreshProList();
+    }
+    this.service.GetProductByBrand(selectedBrands).subscribe(data =>{
+      this.filteredProducts=data;
+      console.log(this.filteredProducts)
+      this.ProductsList=this.filteredProducts;
+    })
+  }
+
   //create flter employee method
   filterProducts(filterword: string)
   {
     
   }
+
   refreshProList(){
     this.service.GetAllProducts().subscribe(data => {
       this.ProductsList=data;

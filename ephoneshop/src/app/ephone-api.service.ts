@@ -15,4 +15,9 @@ readonly APIUrl="https://localhost:7225/";
     return this.service.get<any>(this.APIUrl + 'Product');
   }
  
+  GetProductByBrand(brand:string[]):Observable<any[]>
+  {
+    return this.service.get<any>(this.APIUrl + 'Product/brand/' + brand)
+  }
+
 }

@@ -70,42 +70,42 @@ public class ProductRepository : IProductRepository
         try
         {
             connect.Open();
+                var sql = "select * from product where brand=@brand";
 
-            var sql = "select * from product where brand=@brand";
-
-            // creating command
-            using var cmd = new MySqlCommand(sql, connect);
-            //inserting params
-            var brandParam = new MySqlParameter("@brand", MySqlDbType.VarChar, 36)
-            { 
-                Value = brand
-            };
-            cmd.Parameters.Add(brandParam);
-            // execute command when called and populates to the table
-            using var adapter = new MySqlDataAdapter(cmd);
-            var table = new DataTable();
-            try
-            {
-                adapter.Fill(table);
-            }
-            catch (InvalidOperationException e)
-            {
-                // log error
-                Console.WriteLine(e.Message);
-            }
-
-            if (table.Rows.Count > 0)
-            {
-                foreach (DataRow row in table.Rows)
+                // creating command
+                using var cmd = new MySqlCommand(sql, connect);
+                //inserting params
+                var brandParam = new MySqlParameter("@brand", MySqlDbType.VarChar, 36)
                 {
+                    Value = brand
+                };
+                cmd.Parameters.Add(brandParam);
+                // execute command when called and populates to the table
+                using var adapter = new MySqlDataAdapter(cmd);
+                var table = new DataTable();
+                try
+                {
+                    adapter.Fill(table);
+                }
+                catch (InvalidOperationException e)
+                {
+                    // log error
+                    Console.WriteLine(e.Message);
+                }
+
+                if (table.Rows.Count > 0)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
                     var entity = new ProductEntity(row);
                     prodList.Add(entity);
 
+                    }
+
                 }
 
-            }
-
-            connect.Close();
+                connect.Close();
+            
         }
         catch (Exception ex)
         {

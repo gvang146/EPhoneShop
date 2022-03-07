@@ -7,7 +7,7 @@
             <mat-accordion>
                 <mat-label class="label">Processors</mat-label>
                 <mat-divider></mat-divider>
-                <mat-selection-list #Processors >
+                <mat-selection-list #Processors>
                     <mat-list-option *ngFor="let processor of typesOfProcessors" value="{{processor}}">
                         {{processor}}
                     </mat-list-option>
@@ -15,7 +15,7 @@
             <mat-divider></mat-divider>
             <mat-label class="label">Brand</mat-label>
                 <mat-divider></mat-divider>
-            <mat-selection-list #Brand>
+            <mat-selection-list #Brand [(ngModel)]="selectedBrands" (ngModelChange)="filterBrand($event)">
                 <mat-list-option *ngFor="let brand of typesOfBrand" value="{{brand}}">
                     {{brand}}
                 </mat-list-option>
