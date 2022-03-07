@@ -4,10 +4,11 @@ import { EphoneAPIService } from '../ephone-api.service';
 
 
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 //creating task export for checkboxes
 
@@ -74,3 +75,5 @@ export class ProductsComponent implements OnInit {
     })
   }
 }
+
+

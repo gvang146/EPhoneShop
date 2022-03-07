@@ -37,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UserService } from './_services/UserLoginService.service';
 import { AuthGuard } from './_utilities/auth.guard';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { AuthGuard } from './_utilities/auth.guard';
     ProductsComponent,
     ShowProComponent,
     AddEditProComponent,
-    ShowCheckoutComponent
+    ShowCheckoutComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DeveloperComponent } from './developer/developer.component';
 import { SignupComponent } from './signup/signup.component';
+import { CartComponent } from './components/cart/cart.component';
 
 import { EmployeeComponent } from './employee/employee.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -21,8 +22,10 @@ const routes: Routes = [
   { path: 'developer', component: DeveloperComponent},
   { path: '', component: HomeComponent},
   { path: 'signup', component: SignupComponent},
+
   //otherwise redirect to home
   {path: '**', redirectTo:''}
+
 ];
 
 @NgModule({
@@ -30,4 +33,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 export const RoutingComponents = [ProductsComponent, LoginComponent, HomeComponent, DeveloperComponent, SignupComponent , CheckoutComponent];
