@@ -28,7 +28,7 @@ body {font-size:16px;}
     <h1 class="PA-xxxlarge PA-text-purple"><b>Showcase.</b></h1>
     <hr style="width:50px;border:5px solid #5d4796" class="PA-round">
   </div>
-  
+
   <!-- Photo grid (modal) -->
   <div class="PA-row-padding">
     <div class="PA-half">
@@ -63,7 +63,7 @@ body {font-size:16px;}
     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </p>
   </div>
-  
+
   <!-- Packages / Pricing Tables -->
   <div class="PA-container" id="packages" style="margin-top:75px">
     <h1 class="PA-xxxlarge PA-text-purple"><b>Packages.</b></h1>
@@ -89,7 +89,7 @@ body {font-size:16px;}
         </li>
       </ul>
     </div>
-        
+
     <div class="PA-half">
       <ul class="PA-ul PA-light-grey PA-center">
         <li class="PA-purple PA-xlarge PA-padding-32">Just The Pros</li>
@@ -108,27 +108,27 @@ body {font-size:16px;}
       </ul>
     </div>
   </div>
-  
+
   <!-- Contact -->
   <div class="PA-container" id="contact" style="margin-top:75px">
     <h1 class="PA-xxxlarge PA-text-purple"><b>Contact.</b></h1>
     <hr style="width:50px;border:5px solid #5d4796" class="PA-round">
     <p>Do you want us luxurize your phone? Fill out the form and fill me in with the details :)</p>
-    <form action="/action_page.php" target="_blank">
-      <div class="PA-section">
-        <label>Name</label>
-        <input class="PA-input PA-border" type="text" name="Name" required>
-      </div>
-      <div class="PA-section">
-        <label>Email</label>
-        <input class="PA-input PA-border" type="text" name="Email" required>
-      </div>
-      <div class="PA-section">
-        <label>Message</label>
-        <input class="PA-input PA-border" type="text" name="Message" required>
-      </div>
-      <button type="submit" class="PA-button PA-block PA-padding-large PA-purple PA-margin-bottom">Send Message</button>
-    </form>  
+  <form #contactForm="ngForm" (ngSubmit)="getUserContactInfo(contactForm.value)">
+    <div class="PA-section">
+      <label>Name</label>
+      <input class="PA-input PA-border" type="text" ngModel name="Name" placeholder="Enter Name" required>
+    </div>
+    <div class="PA-section">
+      <label>Email</label>
+      <input class="PA-input PA-border" type="text" ngModel name="Email" placeholder="Enter Email" required>
+    </div>
+    <div class="PA-section">
+      <label>Message</label>
+      <input class="PA-input PA-border" type="text" ngModel name="Message" placeholder="Enter Message" required>
+    </div>
+    <button type="submit" class="PA-button PA-block PA-padding-large PA-purple PA-margin-bottom">Send Message</button>
+  </form>
   </div>
 
 <!-- End page content -->
@@ -139,7 +139,7 @@ function PA_open() {
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("myOverlay").style.display = "block";
 }
- 
+
 function PA_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
