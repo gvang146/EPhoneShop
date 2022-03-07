@@ -34,11 +34,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
 import { SignupService } from './_services/SignupService.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UserService } from './_services/UserLoginService.service';
 import { AuthGuard } from './_utilities/auth.guard';
 import { CartComponent } from './components/cart/cart.component';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -76,7 +75,8 @@ import { CartComponent } from './components/cart/cart.component';
     MatCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSnackBarModule
+    MatIconModule
+    
   ],
   providers: [EphoneAPIService,SignupService,UserService, AuthGuard],
   bootstrap: [AppComponent]

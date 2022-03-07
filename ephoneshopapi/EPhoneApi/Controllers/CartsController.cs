@@ -72,4 +72,12 @@ public class CartsController : ControllerBase
 
         return BadRequest(new {Message = "Error Removing Item from Cart"});
     }
+    //GetAllUserCartItem for display
+    [HttpGet]
+    [Route("{Userid}")]
+    public IActionResult GetAllCartItems(string userId)
+    {
+        IList<CartsEntity> cartList = _cartRepo.GetAllCartItems(userId);
+        return Ok(cartList);
+    }
 }

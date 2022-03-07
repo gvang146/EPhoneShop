@@ -1,4 +1,4 @@
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div clas="container">
     <div class="filter">
         <mat-label>Filter By Features</mat-label>
@@ -48,12 +48,20 @@
                 <mat-card-content> 
                                 Color: {{dataItem.color}}<br/>
                                 Speed: {{dataItem.speed}}<br/><br/>
-                                Price: ${{dataItem.price}}<br/>
+                                Price: {{dataItem.price}}<br/>
                 </mat-card-content>
                 <mat-card-actions>
-                    <a href="/checkout" mat-raised-button color="primary" type="button">Add to Cart</a>
+                    <button mat-raised-button color="primary" (click)="AddItemToCart(dataItem.Id)">Add to Cart</button>
                 </mat-card-actions>
             </mat-card> 
         </div>
     </div>
+     <div class="cart">
+         <mat-card *ngFor="let cartItem of cartList">
+             <mat-card-title><button mat-raised-button color="primary" (click)="GetCartItems(currentUser.Id)"><mat-icon>add_shopping_cart</mat-icon> Shopping Cart </button></mat-card-title>
+             <mat-card-content >
+                {{cartItem}}
+             </mat-card-content>
+         </mat-card>
+    </div> 
 </div>

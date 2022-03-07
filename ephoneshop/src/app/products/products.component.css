@@ -29,10 +29,16 @@ mat-label
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 85%;
     
 }
 mat-card
 {
     margin: 10px;
     padding: 10px;
+}
+.cart
+{
+    display:flex;
+    max-width: 5%;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { EphoneAPIService } from '../ephone-api.service';
-
+import { Cart } from '../_models/CartModel'
+import { User } from '../_models/UserLoginModel';
 
 
 
@@ -14,7 +15,10 @@ import { EphoneAPIService } from '../ephone-api.service';
 
 export class ProductsComponent implements OnInit {
   ProductsList:any=[];
-  filteredProducts: string[];
+  cartList: any =[];
+  cart: Cart;
+  message:string;
+  currentUser: User = new User();
   private _filterWord : string;
   //Getter for the word
   get filterWord(): string {
@@ -72,6 +76,18 @@ export class ProductsComponent implements OnInit {
   refreshProList(){
     this.service.GetAllProducts().subscribe(data => {
       this.ProductsList=data;
+    })
+  }
+  GetCartItems(userId: string)
+  {
+    this.service.GetCartItems(userId).subscribe(data =>{
+      this.cartList = data;
+    })
+  }
+  AddItemToCart(id:string)
+  {
+    this.service.AddToCart(id).subscribe(data=> {
+      this.message = data;
     })
   }
 }
