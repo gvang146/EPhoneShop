@@ -70,6 +70,8 @@ public class ProductRepository : IProductRepository
         try
         {
             connect.Open();
+            if(!brand.Contains(','))
+            {
                 var sql = "select * from product where brand=@brand";
 
                 // creating command
@@ -105,6 +107,46 @@ public class ProductRepository : IProductRepository
                 }
 
                 connect.Close();
+            }
+            else
+            {
+                string sql = "select * from product where brand='" + brand.Split(",")[0] + "'";
+                for(int i = 0; i < brand.Split(',').Length; i++)
+                {
+                    sql += " OR brand='" + brand.Split(',')[i]+ "'";
+                }
+                    
+
+                    // creating command
+                    using var cmd = new MySqlCommand(sql, connect);
+                    using var adapter = new MySqlDataAdapter(cmd);
+                    var table = new DataTable();
+                    try
+                    {
+                        adapter.Fill(table);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        // log error
+                        Console.WriteLine(e.Message);
+                    }
+
+                    if (table.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in table.Rows)
+                        {
+                            var entity = new ProductEntity(row);
+                            prodList.Add(entity);
+
+                        }
+
+                    }
+
+                    connect.Close();
+            }
+            
+
+
             
         }
         catch (Exception ex)
