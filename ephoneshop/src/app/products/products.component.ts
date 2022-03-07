@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { EphoneAPIService } from '../ephone-api.service';
 
 
 
@@ -11,7 +12,20 @@ import { ThemePalette } from '@angular/material/core';
 //creating task export for checkboxes
 
 export class ProductsComponent implements OnInit {
-  constructor() { }
+  ProductsList:any=[];
+  filteredProducts: string[];
+  private _filterWord : string;
+  //Getter for the word
+  get filterWord(): string {
+    return this._filterWord;
+  }
+  //setter for the work and callnig the method
+  set filterWord(value: string)
+  {
+    this._filterWord = value;
+    //this.filteredProducts = this.filteredProducts(value);
+  }
+  constructor(private service: EphoneAPIService) { }
   typesOfProcessors: string[] = 
   [ 
     'Level 1 Processor', 
@@ -46,6 +60,17 @@ export class ProductsComponent implements OnInit {
     '#300-'
   ];
   ngOnInit(): void {
+    this.refreshProList();
   }
   
+  //create flter employee method
+  filterProducts(filterword: string)
+  {
+    
+  }
+  refreshProList(){
+    this.service.GetAllProducts().subscribe(data => {
+      this.ProductsList=data;
+    })
+  }
 }

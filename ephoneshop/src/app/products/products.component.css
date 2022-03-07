@@ -27,7 +27,12 @@ mat-label
 .cards
 {
     display: flex;
-    position: relative;
-    max-width: 80%;
-    justify-content: left;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+mat-card
+{
+    margin: 10px;
+    padding: 10px;
 }

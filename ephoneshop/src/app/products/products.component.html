@@ -7,8 +7,8 @@
             <mat-accordion>
                 <mat-label class="label">Processors</mat-label>
                 <mat-divider></mat-divider>
-                <mat-selection-list #Processors>
-                    <mat-list-option *ngFor="let processor of typesOfProcessors">
+                <mat-selection-list #Processors >
+                    <mat-list-option *ngFor="let processor of typesOfProcessors" value="{{processor}}">
                         {{processor}}
                     </mat-list-option>
                 </mat-selection-list>
@@ -16,7 +16,7 @@
             <mat-label class="label">Brand</mat-label>
                 <mat-divider></mat-divider>
             <mat-selection-list #Brand>
-                <mat-list-option *ngFor="let brand of typesOfBrand">
+                <mat-list-option *ngFor="let brand of typesOfBrand" value="{{brand}}">
                     {{brand}}
                 </mat-list-option>
             </mat-selection-list>
@@ -24,7 +24,7 @@
             <mat-label class="label">Speed</mat-label>
                 <mat-divider></mat-divider>
             <mat-selection-list #Speed>
-                <mat-list-option *ngFor="let speed of typesOfSpeed">
+                <mat-list-option *ngFor="let speed of typesOfSpeed" value="{{speed}}">
                     {{speed}}
                 </mat-list-option>
             </mat-selection-list>
@@ -32,7 +32,7 @@
             <mat-label class="label">Price</mat-label>
                 <mat-divider></mat-divider>
             <mat-selection-list #Price>
-                <mat-list-option *ngFor="let price of typesOfPrice">
+                <mat-list-option *ngFor="let price of typesOfPrice" value="{{price}}">
                     {{price}}
                 </mat-list-option>
             </mat-selection-list>
@@ -40,6 +40,20 @@
         </mat-list>
     </div>
     <div class="cards">
-        <app-card></app-card>
+        <div class="cards">
+            <mat-card class="card1" *ngFor="let dataItem of ProductsList">
+                <mat-card-title>{{dataItem.productName}}</mat-card-title>
+                <mat-card-subtitle>{{dataItem.productDesc}}</mat-card-subtitle>
+                <img mat-card-image  src="../../assets/Images/phone 8.jpg">
+                <mat-card-content> 
+                                Color: {{dataItem.color}}<br/>
+                                Speed: {{dataItem.speed}}<br/><br/>
+                                Price: ${{dataItem.price}}<br/>
+                </mat-card-content>
+                <mat-card-actions>
+                    <a href="/checkout" mat-raised-button color="primary" type="button">Add to Cart</a>
+                </mat-card-actions>
+            </mat-card> 
+        </div>
     </div>
 </div>
