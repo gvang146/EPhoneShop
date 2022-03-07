@@ -7,8 +7,6 @@ import { DeveloperComponent } from './developer/developer.component';
 import { SignupComponent } from './signup/signup.component';
 import { CartComponent } from './components/cart/cart.component';
 
-import { EmployeeComponent } from './employee/employee.component';
-import { CustomerComponent } from './customer/customer.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AuthGuard } from './_utilities/auth.guard';
 
@@ -16,8 +14,6 @@ import { AuthGuard } from './_utilities/auth.guard';
 const routes: Routes = [
   { path: 'products', component: ProductsComponent},
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
-  { path: 'employee', component: EmployeeComponent},
-  { path: 'customer', component: CustomerComponent},
   { path: 'login', component: LoginComponent},
   { path: 'developer', component: DeveloperComponent},
   { path: '', component: HomeComponent},

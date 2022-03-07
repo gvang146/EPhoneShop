@@ -19,8 +19,8 @@ readonly APIUrl="https://localhost:7225/";
     return this.service.get<any>(this.APIUrl + 'Cart/' + userId)
   }
   //Add To cart method
-  AddToCart(productId: any)
+  AddItemToCart(cart: any)
   {
-    return this.service.post<any>(this.APIUrl + 'Carts', productId);
+    return this.service.post<any>(this.APIUrl + 'Carts', cart);
   }
 }

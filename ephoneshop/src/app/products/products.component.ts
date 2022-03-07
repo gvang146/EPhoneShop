@@ -62,17 +62,12 @@ export class ProductsComponent implements OnInit {
     '$600+',
     '$500+',
     '$400+',
-    '#300-'
+    '$300-'
   ];
   ngOnInit(): void {
     this.refreshProList();
   }
   
-  //create flter employee method
-  filterProducts(filterword: string)
-  {
-    
-  }
   refreshProList(){
     this.service.GetAllProducts().subscribe(data => {
       this.ProductsList=data;
@@ -84,9 +79,15 @@ export class ProductsComponent implements OnInit {
       this.cartList = data;
     })
   }
-  AddItemToCart(id:string)
+  //create cart of user
+  CreateCartToAdd(productId: any)
   {
-    this.service.AddToCart(id).subscribe(data=> {
+    this.cart.productId = productId;
+    this.AddItemToCart(this.cart);
+  }
+  AddItemToCart(cart:any)
+  {
+    this.service.AddItemToCart(this.cart).subscribe(data=> {
       this.message = data;
     })
   }

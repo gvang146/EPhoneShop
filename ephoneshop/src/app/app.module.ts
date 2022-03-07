@@ -16,14 +16,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { EmployeeComponent } from './employee/employee.component';
-import { ShowEmpComponent } from './employee/show-emp/show-emp.component';
-import { AddEditEmpComponent } from './employee/add-edit-emp/add-edit-emp.component';
-import { CustomerComponent } from './customer/customer.component';
-import { ShowCusComponent } from './customer/show-cus/show-cus.component';
-import { AddEditCusComponent } from './customer/add-edit-cus/add-edit-cus.component';
-import { ShowProComponent } from './products/show-pro/show-pro.component';
-import { AddEditProComponent } from './products/add-edit-pro/add-edit-pro.component';
 import { ProductsComponent } from './products/products.component';
 import { EphoneAPIService } from './ephone-api.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -44,15 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     RoutingComponents,
     NavbarComponent,
-    EmployeeComponent,
-    ShowEmpComponent,
-    AddEditEmpComponent,
-    CustomerComponent,
-    ShowCusComponent,
-    AddEditCusComponent,
     ProductsComponent,
-    ShowProComponent,
-    AddEditProComponent,
     ShowCheckoutComponent,
     CartComponent,
   ],

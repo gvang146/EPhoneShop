@@ -39,6 +39,7 @@ mat-card
 }
 .cart
 {
+    z-index: 1;
     display:flex;
     max-width: 5%;
 }

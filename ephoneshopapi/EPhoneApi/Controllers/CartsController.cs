@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EPhoneApi.Controllers;
 
-[Authorize] //Everything requires login
+//[Authorize] //Everything requires login
 [ApiController]
 [Route("[controller]")]
 public class CartsController : ControllerBase
