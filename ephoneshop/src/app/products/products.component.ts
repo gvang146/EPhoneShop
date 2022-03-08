@@ -14,7 +14,7 @@ import { EphoneAPIService } from '../ephone-api.service';
 export class ProductsComponent implements OnInit {
   
   ProductsList:any=[];
-  filteredProducts: any[];
+  filteredProducts: any=[];
   private _filterWord : string;
   
   //Getter for the word
@@ -72,46 +72,124 @@ export class ProductsComponent implements OnInit {
     this.refreshProList();
   }
   
+
   selectedBrands:string[];
   selectedProcessors:string[];
   selectedSpeeds:string[];
   selectedPrices:string[];
 
+  merge_array(FilteredProducts:any[],Data:any[]){
+    var result_array:any = [];
+    var index;
 
+    for(index in Data){
+      var index2;
+      var exists=false;
+      for(index2 in FilteredProducts){
+        if(Data[index].id == FilteredProducts[index2].id){
+          exists = true;
+          break;
+        }else{
+          exists = false;
+        }
+      }
+      if(exists == true){
+        result_array.push(Data[index])
+      }
 
-  
-
-
-  filterBrand(selectedBrands:string[]){
-    //console.log(selectedBrands);
-    //console.log(this.ProductsList);
-    if(selectedBrands.length==0){
-      this.refreshProList();
     }
-    this.service.GetProductByBrand(selectedBrands).subscribe(data =>{
-      this.filteredProducts=data;
-      this.ProductsList=this.filteredProducts;
-    })
+    
+    return result_array;
   }
 
+
+  tooManyFilters:boolean=false;
+  
+  activeProFilter:boolean=false;
+  activeBrandFilter:boolean=false;
+  activeSpeedFilter:boolean=false;
+  activePriceFilter:boolean=false;
+
   filterProcessor(selectedProcessors:string[]){
-    if(selectedProcessors.length==0){
-      this.refreshProList();
+    
+    if ((this.activeBrandFilter == true) || (this.activePriceFilter == true) || (this.activeSpeedFilter == true)) {
+      this.service.GetProductByProcessor(selectedProcessors).subscribe(data => {
+        if (this.filteredProducts == []) {
+          this.tooManyFilters = true;
+        } else {
+            this.filteredProducts = this.merge_array(this.filteredProducts, data);
+            //console.log(this.filteredProducts);
+            this.ProductsList = this.filteredProducts;
+
+          this.activeProFilter = true;
+        }
+      })
+    } else {
+      if (selectedProcessors.length == 0) {
+        this.refreshProList();
+        this.activeProFilter=false;
+      }
+      this.service.GetProductByProcessor(selectedProcessors).subscribe(data => {
+        this.filteredProducts = data;
+        this.ProductsList = this.filteredProducts;
+        this.activeProFilter=true;
+
+      })
     }
-    this.service.GetProductByProcessor(selectedProcessors).subscribe(data =>{
-      this.filteredProducts=data;
-      this.ProductsList=this.filteredProducts;
-    })
+    
+    
+  }
+
+  filterBrand(selectedBrands:string[]){
+    
+    if ((this.activeProFilter == true) || (this.activePriceFilter == true) || (this.activeSpeedFilter == true)) {
+      this.service.GetProductByBrand(selectedBrands).subscribe(data => {
+        if (this.filteredProducts == []) {
+          this.tooManyFilters = true;
+          this.selectedProcessors = [];
+        } else {
+            this.filteredProducts = this.merge_array(this.filteredProducts, data);
+            //console.log(this.filteredProducts);
+            this.ProductsList = this.filteredProducts;
+          this.activeBrandFilter = true;
+        }
+      })
+    } else {
+      if (selectedBrands.length == 0) {
+        this.refreshProList();
+        this.activeBrandFilter=false;
+      }
+      this.service.GetProductByBrand(selectedBrands).subscribe(data => {
+        this.filteredProducts = data;
+        this.ProductsList = this.filteredProducts;
+        this.activeBrandFilter = true;
+      })
+    }
   }
 
   filterSpeed(selectedSpeeds:string[]){
-    if(selectedSpeeds.length==0){
-      this.refreshProList();
+    if ((this.activeBrandFilter == true) || (this.activePriceFilter == true) || (this.activeProFilter == true)) {
+      this.service.GetProductBySpeed(selectedSpeeds).subscribe(data => {
+        if (this.filteredProducts == []) {
+          this.tooManyFilters = true;
+        } else {
+            this.filteredProducts = this.merge_array(this.filteredProducts, data);
+            //console.log(this.filteredProducts);
+            this.ProductsList = this.filteredProducts;
+          this.activeSpeedFilter = true;
+        }
+      })
+    } else {
+      if (selectedSpeeds.length == 0) {
+        this.refreshProList();
+        this.activeSpeedFilter=false;
+      }
+      this.service.GetProductBySpeed(selectedSpeeds).subscribe(data => {
+        this.filteredProducts = data;
+        this.ProductsList = this.filteredProducts;
+        this.activeSpeedFilter = true;
+      })
     }
-    this.service.GetProductBySpeed(selectedSpeeds).subscribe(data => {
-      this.filteredProducts=data;
-      this.ProductsList=this.filteredProducts;
-    })
   }
 
   //create flter employee method

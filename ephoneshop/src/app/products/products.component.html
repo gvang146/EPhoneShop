@@ -39,8 +39,10 @@
             </mat-accordion>
         </mat-list>
     </div>
+    <div *ngIf="tooManyFilters" style="font-size: large; justify-content: center;"> We do not have any items that match this search criteria, plase deselect some filters.</div>
     <div class="cards">
         <div class="cards">
+            
             <mat-card class="card1" *ngFor="let dataItem of ProductsList">
                 <mat-card-title>{{dataItem.productName}}</mat-card-title>
                 <mat-card-subtitle>{{dataItem.productDesc}}</mat-card-subtitle>
@@ -49,6 +51,7 @@
                                 Color: {{dataItem.color}}<br/>
                                 Speed: {{dataItem.speed}}<br/><br/>
                                 Price: ${{dataItem.price}}<br/>
+                                
                 </mat-card-content>
                 <mat-card-actions>
                     <a href="/checkout" mat-raised-button color="primary" type="button">Add to Cart</a>
