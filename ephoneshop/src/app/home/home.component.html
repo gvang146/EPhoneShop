@@ -84,7 +84,7 @@ body {font-size:16px;}
           <span class="PA-opacity">per Month, plus taxes & fees</span>
         </li>
         <li class="PA-light-grey PA-padding-24">
-          <button class="PA-button PA-white PA-padding-large PA-hover-black">Get it Now!</button>
+          <a type="button" href="/login" class="PA-button PA-white PA-padding-large PA-hover-black">Get it Now!</a>
         </li>
       </ul>
     </div>
@@ -102,7 +102,7 @@ body {font-size:16px;}
           <span class="PA-opacity">per Month, plus taxes & fees</span>
         </li>
         <li class="PA-light-grey PA-padding-24">
-          <button class="PA-button PA-purple PA-padding-large PA-hover-black">Get it Now!</button>
+          <a type="button" href="/login" class="PA-button PA-purple PA-padding-large PA-hover-black">Get it Now!</a>
         </li>
       </ul>
     </div>
@@ -112,27 +112,25 @@ body {font-size:16px;}
   <div class="PA-container" id="contact" style="margin-top:75px">
     <h1 class="PA-xxxlarge PA-text-purple"><b>Contact.</b></h1>
     <hr style="width:50px;border:5px solid #5d4796" class="PA-round">
-    <p>Do you want us luxurize your phone? Fill out the form and fill me in with the details.</p>
-    <form action="/action_page.php" target="_blank">
-      <div class="PA-section">
-        <label>Name</label>
-        <input class="PA-input PA-border" type="text" name="Name" required>
-      </div>
-      <div class="PA-section">
-        <label>Email</label>
-        <input class="PA-input PA-border" type="text" name="Email" required>
-      </div>
-      <div class="PA-section">
-        <label>Message</label>
-        <input class="PA-input PA-border" type="text" name="Message" required>
-      </div>
-      <button type="submit" class="PA-button PA-block PA-padding-large PA-purple PA-margin-bottom">Send Message</button>
-    </form>
+    <p>Do you want us luxurize your phone? Fill out the form and fill me in with the details :)</p>
+  <form #contactForm="ngForm" (ngSubmit)="getUserContactInfo(contactForm.value)">
+    <div class="PA-section">
+      <label>Name</label>
+      <input matInput class="PA-input PA-border" type="text" #name ngModel name="Name" placeholder="John Doe" required>
+    </div>
+    <div class="PA-section">
+      <label>Email</label>
+      <input matInput class="PA-input PA-border" type="text" #email ngModel name="Email" placeholder="jDoe@email.com" required>
+    </div>
+    <div class="PA-section">
+      <label>Message</label>
+      <input matInput class="PA-input PA-border" type="text" #message ngModel name="Message" placeholder="What seems to be the problem" required>
+    </div>
+    <button type="submit" class="PA-button PA-block PA-padding-large PA-purple PA-margin-bottom">Send Message</button>
+  </form>
   </div>
-
 <!-- End page content -->
 </div>
-
 <!-- PA.CSS Container -->
 <!--<div class="PA-light-grey PA-container PA-padding-32" style="margin-top:75px;padding-right:58px"><p class="PA-right">Powered by <a href="https://www.PAschools.com/PAcss/default.asp" title="PA.CSS" target="_blank" class="PA-hover-opacity">PA.css</a></p></div>-->
 
