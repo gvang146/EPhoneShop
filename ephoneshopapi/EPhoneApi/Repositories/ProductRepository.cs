@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using EPhoneApi.Entities;
 using EPhoneApi.Util;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 
@@ -265,6 +266,7 @@ public class ProductRepository : IProductRepository
         return prodList;
     }
     /*-----------------------------------------------------*/
+    [HttpGet]
     public List<ProductEntity> GetProductByPriceMin()
     {
         var prodList = new List<ProductEntity>();
@@ -311,6 +313,7 @@ public class ProductRepository : IProductRepository
         return prodList;
     }
 
+    [HttpGet]
     public List<ProductEntity> GetProductByPriceMax()
     {
         var prodList = new List<ProductEntity>();
@@ -357,6 +360,8 @@ public class ProductRepository : IProductRepository
         return prodList;
     }
 
+    [HttpGet] 
+    [Route({"price")]
     public List<ProductEntity> GetProductByPriceSpecfic(string price)
     {
          var prodList = new List<ProductEntity>();

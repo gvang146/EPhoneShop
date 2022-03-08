@@ -79,11 +79,14 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  getMin(){
-    this.service.GetMin();
-  }
+  // getMin(){
+  //   this.service.GetProductByPriceMin();
+  // }
+  // getMax() {
+  //   this.service.GetProductByPriceMax();
+  // }
 
-    onNgModelChange($event: any){
+  onNgModelChange($event: any){
     console.log($event);
     this.selectedOption = $event;
     this.filterByPriceSelected(this.selectedOption);
@@ -91,7 +94,7 @@ export class ProductsComponent implements OnInit {
   }
 
   filterByPriceSelected(selectedOption:string) {
-    this.service.GetPriceSpecific(selectedOption);
+    this.service.GetProductByPriceSpecfic(selectedOption);
   }
 
 

@@ -26,21 +26,26 @@ export class EphoneAPIService {
  6. when filter is unclicked run get all products
  */
 
-  GetMin() {
-    return this.service.get<any>(this.APIUrl + 'GetProductByPriceMin');
+  GetProductByPriceMin() {
+    return this.service.get<any>(this.APIUrl + 'product');
   }
 
-  GetPriceSpecific(price: string) {
+  GetProductByPriceMax() {
+     return this.service.get<any>(this.APIUrl + 'product');
+  }
+
+  GetProductByPriceSpecfic(price: string) {
     if (price == 'Low-High') {
-      this.GetMin();
+      this.GetProductByPriceMin();
     }
     else if (price == 'High-Low') {
-      //this.GetMax();
+      this.GetProductByPriceMax;
     }
     else
       this.priceNum = price.replace('+', '');
+      this.priceNum = this.priceNum.replace('$', '');
 
 
-    return this.service.get<any>(this.APIUrl + 'GetProductByPriceSpecfic');
+    return this.service.get<any>(this.APIUrl + 'product' + this.priceNum);
   }
 }

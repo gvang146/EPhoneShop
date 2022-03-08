@@ -50,11 +50,26 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetProductByPrice(value);
         return Ok(prodList);
     }
-
-    /*
-     public IActionResult GetProductPriceMin()
+     public IActionResult GetProductByPriceMin()
     {
-        
+        List<ProductEntity> prodList = new List<ProductEntity>();
+        prodList = _prodRepo.GetProductByPriceMin();
+        return Ok(prodList);
+
+    }//
+    public IActionResult GetProductByPriceMax()
+    {
+        List<ProductEntity> prodList = new List<ProductEntity>();
+        prodList = _prodRepo.GetProductByPriceMax();
+        return Ok(prodList);
+
     }
-     */
+
+    public IActionResult GetProductByPriceSpecfic( string value)
+    {
+        List<ProductEntity> prodList = new List<ProductEntity>();
+        prodList = _prodRepo.GetProductByPriceSpecfic(value);
+        return Ok(prodList);
+    }
+    
 }
