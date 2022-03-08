@@ -48,7 +48,7 @@
                             <div class="col-50">
                                 <mat-form-field appearance="fill">
                                     <mat-label> Zip</mat-label>
-                                    <input maxlength="5" formControlName="zip" placeholder="10001" matInput>
+                                    <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="5" formControlName="zip" placeholder="10001" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label> Credit card number</mat-label>
-                            <input maxlength="16" formControlName="cardnumber" placeholder="1111-2222-3333-4444" matInput>
+                            <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="16" formControlName="cardnumber" placeholder="1111-2222-3333-4444" matInput>
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label> Exp Month</mat-label>
@@ -81,20 +81,19 @@
                             <div class="col-50">
                                 <mat-form-field appearance="fill">
                                     <mat-label> Exp Year</mat-label>
-                                    <input formControlName="expyear" maxlength="4" placeholder="2018" matInput>
+                                    <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" formControlName="expyear" maxLength="4" placeholder="2018" matInput>
                                 </mat-form-field>
                             </div>
                             <div class="col-50">
                                 <mat-form-field appearance="fill">
                                     <mat-label> CVV</mat-label>
-                                    <input maxlength="3" formControlName="cvv" placeholder="352" matInput>
+                                    <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="3" formControlName="cvv" placeholder="352" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
                     </form>
                 </mat-card-content>
             </div>
-            
           </div>
           <mat-checkbox name="sameadr" style="margin-left: 10px;"> Shipping address same as billing</mat-checkbox>
         </mat-card>  
