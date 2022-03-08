@@ -54,20 +54,21 @@ export class CheckoutComponent implements OnInit {
     this.CCardForm.reset();
     this.dialog.open(DialogCheckoutComponent);
   }
-
+  
   refreshProList(){
     this.service.GetAllProducts().subscribe(data=>{
       this.ProductsList=data;
     })
   }
+
   GetTotalCost()
   {
     for(var index in this.cartDetails)
     {
       this.totalCost += this.cartDetails[index].price;
     }
-    
   }
+
   onSubmit()
   {
     this.BillForm.reset();
@@ -75,6 +76,16 @@ export class CheckoutComponent implements OnInit {
     this.openDialog();
     //this.router.navigateByUrl('/products');
   }
+
+  //Sum function
+GetSumOfCart()
+{
+  for(var index in this.cartDetails)
+  {
+    this.totalCost += this.cartDetails[index].price;
+  }
+}
+
   GetCartDetails()
   {
     this.service.GetCartDetails().subscribe(data => {
