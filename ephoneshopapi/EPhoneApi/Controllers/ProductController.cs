@@ -51,7 +51,8 @@ public class ProductController : ControllerBase
         return Ok(prodList);
     }
     [HttpGet]
-     public IActionResult GetProductByPriceMin()
+    [Route("priceMin")]
+    public IActionResult GetProductByPriceMin()
     {
         List<ProductEntity> prodList = new List<ProductEntity>();
         prodList = _prodRepo.GetProductByPriceMin();
@@ -59,6 +60,7 @@ public class ProductController : ControllerBase
 
     }
     [HttpGet]
+    [Route("price/max")]
     public IActionResult GetProductByPriceMax()
     {
         List<ProductEntity> prodList = new List<ProductEntity>();
@@ -66,7 +68,8 @@ public class ProductController : ControllerBase
         return Ok(prodList);
 
     }
-    [HttpGet("price")]
+    [HttpGet]
+    [Route("price/spec")]
     public IActionResult GetProductByPriceSpecfic( string value)
     {
         List<ProductEntity> prodList = new List<ProductEntity>();

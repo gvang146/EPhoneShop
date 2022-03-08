@@ -266,7 +266,7 @@ public class ProductRepository : IProductRepository
         return prodList;
     }
     /*-----------------------------------------------------*/
-    [HttpGet]
+    
     public List<ProductEntity> GetProductByPriceMin()
     {
         var prodList = new List<ProductEntity>();
@@ -313,7 +313,7 @@ public class ProductRepository : IProductRepository
         return prodList;
     }
 
-    [HttpGet]
+   
     public List<ProductEntity> GetProductByPriceMax()
     {
         var prodList = new List<ProductEntity>();
@@ -360,8 +360,7 @@ public class ProductRepository : IProductRepository
         return prodList;
     }
 
-    [HttpGet] 
-    [Route("price")]
+
     public List<ProductEntity> GetProductByPriceSpecfic(string price)
     {
          var prodList = new List<ProductEntity>();
