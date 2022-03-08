@@ -105,12 +105,11 @@
         <h4> Cart
           <span class="price" style="color:black">
             <i class="fa fa-shopping-cart"></i>
-            <b *ngFor="let dataItem of ProductCount"> {{dataItem.count}}</b>
           </span>
         </h4>
         <app-show-checkout></app-show-checkout>
         <hr>
-        <p>Total <span class="price" style="color:black"><b *ngFor="let dataItem of ProductSum">${{dataItem.price}}</b></span></p>
+        <p>Total <span class="price" style="color:black"><b>${{totalCost}}</b></span></p>
         <button color="primary" (click)="openDialog()" type="submit" mat-raised-button> Confirm Order </button>
       </div>
     </div>

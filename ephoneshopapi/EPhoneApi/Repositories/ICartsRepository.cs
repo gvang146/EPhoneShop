@@ -11,4 +11,5 @@ public interface ICartsRepository
     CartsEntity GetCart(string userId, string productId);
     CartsEntity GetCartById(string id);
     bool DeleteAllCartItems(string userId);
+    
 }

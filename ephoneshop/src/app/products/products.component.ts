@@ -86,6 +86,7 @@ export class ProductsComponent implements OnInit {
     const cartinfo = new Cart();
     cartinfo.productId = productId;
     this.AddItemToCart(cartinfo);
+    alert("Item Successfully added to cart!");
   }
 
   AddItemToCart(cartInfo:Cart)

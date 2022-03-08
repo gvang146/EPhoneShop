@@ -1,4 +1,3 @@
-
 <div clas="container">
     <div class="filter">
         <mat-label>Filter By Features</mat-label>
@@ -7,35 +6,35 @@
             <mat-accordion>
                 <mat-label class="label">Processors</mat-label>
                 <mat-divider></mat-divider>
-                <mat-selection-list #Processors >
+                <mat-selection-list #Processors>
                     <mat-list-option *ngFor="let processor of typesOfProcessors" value="{{processor}}">
                         {{processor}}
                     </mat-list-option>
                 </mat-selection-list>
-            <mat-divider></mat-divider>
-            <mat-label class="label">Brand</mat-label>
                 <mat-divider></mat-divider>
-            <mat-selection-list #Brand>
-                <mat-list-option *ngFor="let brand of typesOfBrand" value="{{brand}}">
-                    {{brand}}
-                </mat-list-option>
-            </mat-selection-list>
-            <mat-divider></mat-divider>
-            <mat-label class="label">Speed</mat-label>
+                <mat-label class="label">Brand</mat-label>
                 <mat-divider></mat-divider>
-            <mat-selection-list #Speed>
-                <mat-list-option *ngFor="let speed of typesOfSpeed" value="{{speed}}">
-                    {{speed}}
-                </mat-list-option>
-            </mat-selection-list>
-            <mat-divider></mat-divider>
-            <mat-label class="label">Price</mat-label>
+                <mat-selection-list #Brand>
+                    <mat-list-option *ngFor="let brand of typesOfBrand" value="{{brand}}">
+                        {{brand}}
+                    </mat-list-option>
+                </mat-selection-list>
                 <mat-divider></mat-divider>
-            <mat-selection-list #Price>
-                <mat-list-option *ngFor="let price of typesOfPrice" value="{{price}}">
-                    {{price}}
-                </mat-list-option>
-            </mat-selection-list>
+                <mat-label class="label">Speed</mat-label>
+                <mat-divider></mat-divider>
+                <mat-selection-list #Speed>
+                    <mat-list-option *ngFor="let speed of typesOfSpeed" value="{{speed}}">
+                        {{speed}}
+                    </mat-list-option>
+                </mat-selection-list>
+                <mat-divider></mat-divider>
+                <mat-label class="label">Price</mat-label>
+                <mat-divider></mat-divider>
+                <mat-selection-list #Price>
+                    <mat-list-option *ngFor="let price of typesOfPrice" value="{{price}}">
+                        {{price}}
+                    </mat-list-option>
+                </mat-selection-list>
             </mat-accordion>
         </mat-list>
     </div>
@@ -44,28 +43,19 @@
             <mat-card class="card1" *ngFor="let dataItem of ProductsList">
                 <mat-card-title>{{dataItem.productName}}</mat-card-title>
                 <mat-card-subtitle>{{dataItem.productDesc}}</mat-card-subtitle>
-                <img mat-card-image  src="../../assets/Images/phone 8.jpg">
-                <mat-card-content> 
-                                Color: {{dataItem.color}}<br/>
-                                Speed: {{dataItem.speed}}<br/>
-                                Brand: {{dataItem.brand}}<br/>
-                                Processor: {{dataItem.processors}}<br/>
-                                Price: ${{dataItem.price}}<br/>
+                <img mat-card-image src="../../assets/Images/phone 8.jpg">
+                <mat-card-content>
+                    Color: {{dataItem.color}}<br />
+                    Speed: {{dataItem.speed}}<br />
+                    Brand: {{dataItem.brand}}<br />
+                    Processor: {{dataItem.processors}}<br />
+                    Price: ${{dataItem.price}}<br />
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="primary" (click)="CreateCartToAdd(dataItem.id)">Add to Cart</button>
+                    <button mat-raised-button color="primary" (click)="CreateCartToAdd(dataItem.id)">Add to
+                        Cart</button>
                 </mat-card-actions>
-            </mat-card> 
+            </mat-card>
         </div>
     </div>
-    <div class="cart">
-        <div *ngFor="let cartItem of cartList">
-            <mat-label><mat-icon>add_shopping_cart</mat-icon> Shopping Cart </mat-label>
-            <div >
-                <button mat-raised-button color="primary" (click)="GetCartItems(currentUser.Id)"><mat-icon>refresh</mat-icon></button>
-               {{cartItem.productId}} {{cartItem.quatity}}
-               <a type="button" href="/checkout" mat-raised-button color="primary">Check-out</a>
-            <div>
-        </div>
-   </div> 
 </div>
