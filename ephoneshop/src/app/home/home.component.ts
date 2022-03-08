@@ -19,8 +19,6 @@ export class HomeComponent  implements OnInit {
   @ViewChild('message') inputMessage: any;
   ngOnInit()
   {
-
-
   }
 
    getUserContactInfo(info: any) {
