@@ -2,9 +2,23 @@
     <mat-card>
         <mat-card-title>Shopping Cart</mat-card-title>
         <mat-divider></mat-divider>
-        <mat-label>Item 1</mat-label>
-        <input class="quantity" matInput value="1" text> 
-        <button mat-button >+</button>
-        <button mat-button >-</button>
+        <mat-card-content>
+            <div class="split">
+                <div class="items">
+                    <mat-label>Item 1</mat-label>
+                </div>
+                <!-- <div class="btns">
+                    <input class="quantity" matInput value="1" text>
+                    <button mat-button >+</button>
+                    <button mat-button >-</button>
+                </div> -->
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="redirect">
+                <!-- <button mat-button>Update Cart</button> -->
+                <a href="/checkout" mat-raised-button type="button" color="primary">Proceed To Check Out</a>
+            </div>
+        </mat-card-actions>
     </mat-card>
 </div>
