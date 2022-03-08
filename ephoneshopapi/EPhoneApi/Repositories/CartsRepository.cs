@@ -23,7 +23,7 @@ public class CartsRepository : ICartsRepository
         {
             conn.Open();
             //creating the string
-            var sql = "insert into Cart(Id, UserId, ProductId, quantity) values (@Id, @UserId, @ProductId, @quantity)";
+            var sql = "insert into Carts(Id, UserId, ProductId, quantity) values (@Id, @UserId, @ProductId, @quantity)";
 
             using var cmd = new MySqlCommand(sql, conn);
             var idParam = new MySqlParameter("@id", MySqlDbType.VarChar, 36)

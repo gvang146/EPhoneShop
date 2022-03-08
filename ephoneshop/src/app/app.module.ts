@@ -21,15 +21,15 @@ import { EphoneAPIService } from './ephone-api.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {HttpClientModule} from '@angular/common/http';
-
-import { CheckoutComponent } from './checkout/checkout.component';
 import { ShowCheckoutComponent } from './checkout/show-checkout/show-checkout.component';
 import { SignupService } from './_services/SignupService.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './_services/UserLoginService.service';
 import { AuthGuard } from './_utilities/auth.guard';
-import { CartComponent } from './components/cart/cart.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule} from "@angular/material/dialog";
+import { DialogCheckoutComponent } from './components/dialog-checkout/dialog-checkout.component';
+import { ShopcartComponent } from './components/shopcart/shopcart.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,12 @@ import { MatIconModule } from '@angular/material/icon';
     NavbarComponent,
     ProductsComponent,
     ShowCheckoutComponent,
-    CartComponent,
+    ShopcartComponent,
+    
+  ],
+  //For Dialogs
+  entryComponents: [
+    DialogCheckoutComponent, 
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
     
   ],
   providers: [EphoneAPIService,SignupService,UserService, AuthGuard],

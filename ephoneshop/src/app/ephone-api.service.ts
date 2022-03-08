@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Cart } from './_models/CartModel';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,13 @@ readonly APIUrl="https://localhost:7225/";
     return this.service.get<any>(this.APIUrl + 'Cart/' + userId)
   }
   //Add To cart method
-  AddItemToCart(cart: any)
+  AddItemToCart(cart: Cart)
   {
-    return this.service.post<any>(this.APIUrl + 'Carts', cart);
+    let token = localStorage.getItem('token') ?? '';
+    let headers = new HttpHeaders({
+      'Content-Type' : 'application/json; charset=UTF-8',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.service.post<any>(this.APIUrl + 'Carts', cart, { headers : headers });
   }
 }

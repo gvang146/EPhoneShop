@@ -80,16 +80,20 @@ export class ProductsComponent implements OnInit {
     })
   }
   //create cart of user
-  CreateCartToAdd(productId: any)
+  CreateCartToAdd(productId: string)
   {
-    this.cart.productId = productId;
-    this.AddItemToCart(this.cart);
+    //this.cart.productId = productId;
+    const cartinfo = new Cart();
+    cartinfo.productId = productId;
+    this.AddItemToCart(cartinfo);
   }
-  AddItemToCart(cart:any)
+
+  AddItemToCart(cartInfo:Cart)
   {
-    this.service.AddItemToCart(this.cart).subscribe(data=> {
+    this.service.AddItemToCart(cartInfo).subscribe(data=> {
       this.message = data;
-    })
+    },
+    error => console.log(error));
   }
 }
 

@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container">
     <mat-toolbar color="primary">
         <a class="title" href="/" type="button" mat-button>EphoneShop</a>
@@ -9,6 +10,11 @@
     </mat-toolbar>
 </div>
 <ng-template #LoggedOn>
+    <div class="cart">
+        <div >
+            <a type="button" href="/shopcart" mat-button><mat-icon>add_shopping_cart</mat-icon></a>
+        </div>
+    </div> 
     <mat-label >{{currentUser.firstName}} </mat-label>
     <button (click)="logout()" mat-button>Log out</button>
 </ng-template>

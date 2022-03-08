@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { EphoneAPIService } from 'src/app/ephone-api.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogCheckoutComponent } from '../components/dialog-checkout/dialog-checkout.component';
 
 @Component({
   selector: 'app-checkout',
@@ -7,18 +12,41 @@ import { EphoneAPIService } from 'src/app/ephone-api.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-
-  constructor(private service:EphoneAPIService) { }
-
   ProductsList:any=[];
   ProductSum:any=[];
   ProductCount:any=[];
+  BillForm: any;
+  CCardForm: any;
 
+  constructor(private service:EphoneAPIService, private formBuilder:FormBuilder, private router: Router, public dialog: MatDialog) { }
+
+  
 
   ngOnInit(): void {
+    this.BillForm = this.formBuilder.group({
+      firstName: ['',[Validators.required]],
+      lastName: ['',[Validators.required]],
+      email: ['',[Validators.required]],
+      address: ['',[Validators.required]],
+      city: ['',[Validators.required]],
+      state: ['',[Validators.required]],
+      zip: ['',[Validators.required]]
+    })
+    this.CCardForm = this.formBuilder.group({
+      cardName: ['',[Validators.required]],
+      cardnumber: ['',[Validators.required]],
+      expmonth: ['',[Validators.required]],
+      expyear: ['',[Validators.required]],
+      cvv: ['',[Validators.required]]
+    })
     this.refreshProList();
   }
-
+  openDialog()
+  {
+    this.BillForm.reset();
+    this.CCardForm.reset();
+    this.dialog.open(DialogCheckoutComponent);
+  }
 
   refreshProList(){
     this.service.GetAllProducts().subscribe(data=>{
@@ -27,6 +55,9 @@ export class CheckoutComponent implements OnInit {
   }
   onSubmit()
   {
-    
+    this.BillForm.reset();
+    this.CCardForm.reset();
+    this.openDialog();
+    //this.router.navigateByUrl('/products');
   }
 }

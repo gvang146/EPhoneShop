@@ -5,10 +5,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DeveloperComponent } from './developer/developer.component';
 import { SignupComponent } from './signup/signup.component';
-import { CartComponent } from './components/cart/cart.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AuthGuard } from './_utilities/auth.guard';
+import { ShopcartComponent } from './components/shopcart/shopcart.component';
 
 
 const routes: Routes = [
@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'developer', component: DeveloperComponent},
   { path: '', component: HomeComponent},
   { path: 'signup', component: SignupComponent},
+  { path: 'shopcart', component: ShopcartComponent},
 
   //otherwise redirect to home
   {path: '**', redirectTo:''}
@@ -30,4 +31,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const RoutingComponents = [ProductsComponent, LoginComponent, HomeComponent, DeveloperComponent, SignupComponent , CheckoutComponent];
+export const RoutingComponents = [ProductsComponent, LoginComponent, HomeComponent, DeveloperComponent, SignupComponent , CheckoutComponent, ShopcartComponent];
