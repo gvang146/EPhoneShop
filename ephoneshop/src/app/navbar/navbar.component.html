@@ -3,6 +3,16 @@
         <a class="title" href="/" type="button" mat-button>EphoneShop</a>
         <a type="button" href="/products" mat-button>Products</a>
         <a type="button" href="/developer" mat-button>Developers</a>
+        <i style="font-size: 40px;" class="fas fa-shipping-fast">&nbsp;</i>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="search products">
+        </div>
+        <span class="fas fa-search search-icon"></span>
+        <button class="btn btn-primary">
+            <i style="font-size: 30px;" class="fas fa-cart-plus"></i>
+            <div style="font-size: 10px" class="badge bg-danger"></div>
+        </button>
+        <strong>Search</strong>
         <span class="spacer"></span>
         <div *ngIf="isLoggedIn; then LoggedOn; else LoggedOff">
         </div>
@@ -14,5 +24,5 @@
 </ng-template>
 <ng-template #LoggedOff>
     <a href="/login" type="button" mat-button color="secondary">Login</a>
-    <a href="/signup" type="button" mat-button color="secondary">Sign-up</a>
+    <a href="signup/" type="button" mat-button color="secondary">Sign-up</a>
 </ng-template>

@@ -23,3 +23,19 @@ a:hover
     text-decoration: none;
     color:white;
 }
+
+.form-control{
+    border-radius: 3px;
+    width: 300px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.search-icon{
+    position:absolute;
+    z-index: 10;
+    right: 38%;
+    top: 20px;
+    color:black;
+
+}
