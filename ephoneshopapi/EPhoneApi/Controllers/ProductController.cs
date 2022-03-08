@@ -22,4 +22,36 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetAllProducts();
         return Ok(prodList);
     }
+    [HttpGet]
+    [Route("brand/{value}")]
+    public IActionResult GetProductByBrand(string value)
+    {
+        List<ProductEntity> prodList = new List<ProductEntity>();
+        prodList = _prodRepo.GetProductByBrand(value);
+        return Ok(prodList);
+    }
+    [HttpGet]
+    [Route("processor/{value}")]
+    public IActionResult GetProductByProcessors(string value)
+    {
+        List<ProductEntity> prodList = new List<ProductEntity>();
+        prodList = _prodRepo.GetProductByProcessors(value);
+        return Ok(prodList);
+    }
+    [HttpGet]
+    [Route("speed/{value}")]
+    public IActionResult GetProductBySpeed(string value)
+    {
+        List<ProductEntity> prodList = new List<ProductEntity>();
+        prodList = _prodRepo.GetProductBySpeed(value);
+        return Ok(prodList);
+    }
+    [HttpGet]
+    [Route("price/{value}")]
+    public IActionResult GetProductByPrice(string value)
+    {
+        List<ProductEntity> prodList = new List<ProductEntity>();
+        prodList = _prodRepo.GetProductByPrice(value);
+        return Ok(prodList);
+    }
 }
