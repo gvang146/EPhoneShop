@@ -33,6 +33,7 @@ readonly APIUrl="https://localhost:7225/";
   {
     return this.service.get<any>(this.APIUrl + 'Carts/' + userId)
   }
+  
   //Add To cart method
   AddItemToCart(cart: Cart)
   {
@@ -42,5 +43,20 @@ readonly APIUrl="https://localhost:7225/";
       'Authorization': `Bearer ${token}`
     });
     return this.service.post<any>(this.APIUrl + 'Carts', cart, { headers : headers });
+  }
+
+  GetProductByBrand(brand:string[]):Observable<any[]>
+  {
+    return this.service.get<any>(this.APIUrl + 'Product/brand/' + brand)
+  }
+
+  GetProductByProcessor(processor:string[]):Observable<any[]>
+  {
+    return this.service.get<any>(this.APIUrl + 'Product/processor/' + processor)
+  }
+
+  GetProductBySpeed(speed:string[]):Observable<any[]>
+  {
+    return this.service.get<any>(this.APIUrl + 'Product/speed/' + speed)
   }
 }
