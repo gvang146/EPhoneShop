@@ -23,7 +23,7 @@ public class CartsRepository : ICartsRepository
         {
             conn.Open();
             //creating the string
-            var sql = "insert into Carts(Id, UserId, ProductId, quantity) values (@Id, @UserId, @ProductId, @quantity)";
+            var sql = "insert into Cart(Id, UserId, ProductId, quantity) values (@Id, @UserId, @ProductId, @quantity)";
 
             using var cmd = new MySqlCommand(sql, conn);
             var idParam = new MySqlParameter("@id", MySqlDbType.VarChar, 36)
@@ -38,7 +38,7 @@ public class CartsRepository : ICartsRepository
             cmd.Parameters.Add(userIdParam);
             var productIdParam = new MySqlParameter("@ProductId", MySqlDbType.VarChar, 36)
             {
-                Value = entity.ProductId
+                Value = entity.Product.Id
             };
             cmd.Parameters.Add(productIdParam);
 
@@ -86,21 +86,32 @@ public class CartsRepository : ICartsRepository
 
         return success;
     }
+    
     //GetCartDetails
-    public CartsEntity GetCartDetail(string id)
+    public IList<CartsEntity> GetCartDetails(string userId)
     {
-        CartsEntity entity = null;
+        var cartEntities = new List<CartsEntity>();
         using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
             conn.Open();
             //creating the string
-            var sql = "select * from carts where id=@id";
+            var sql = @"select
+                    c.id,
+                    c.userid,
+                    c.quantity,
+                    p.id product_id,
+                    p.productName,
+                    p.price
+                from carts c
+                inner join product p
+                    on p.id = c.productId
+                where userid=@userId";
 
             using var cmd = new MySqlCommand(sql, conn);
-            var idParam = new MySqlParameter("@id", MySqlDbType.VarChar, 36)
+            var idParam = new MySqlParameter("@userId", MySqlDbType.VarChar, 36)
             {
-                Value = id
+                Value = userId
             };
             cmd.Parameters.Add(idParam);
 
@@ -116,9 +127,21 @@ public class CartsRepository : ICartsRepository
             {
                 // log error
             }
-            if (table.Rows.Count > 0)
+            
+            foreach (DataRow row in table.Rows)
             {
-                entity = new CartsEntity(table.Rows[0]);
+                cartEntities.Add(new CartsEntity
+                {
+                    Id = Convert.ToString(row["id"]),
+                    UserId = Convert.ToString(row["userid"]),
+                    Quantity = Convert.ToInt32(row["quantity"]),
+                    Product = new ProductEntity
+                    {
+                        Id = Convert.ToString(row["product_id"]),
+                        ProductName = Convert.ToString(row["productname"]),
+                        Price = Convert.ToDouble(row["price"])
+                    }
+                });
             }
 
             conn.Close();
@@ -128,8 +151,10 @@ public class CartsRepository : ICartsRepository
             // Log error
         }
 
-        return entity;
+        return cartEntities;
     }
+    
+    
     //Update the cart's quantity per item
     public Boolean UpdateCartItem(CartsEntity entity)
     {
@@ -193,7 +218,17 @@ public class CartsRepository : ICartsRepository
             }
             if (table.Rows.Count > 0)
             {
-                entity = new CartsEntity(table.Rows[0]);
+                DataRow row = table.Rows[0];
+                entity = new CartsEntity
+                {
+                    Id = Convert.ToString(row["id"]),
+                    UserId = Convert.ToString(row["userid"]),
+                    Quantity = Convert.ToInt32(row["quantity"]),
+                    Product = new ProductEntity
+                    {
+                        Id = Convert.ToString(row["productId"])
+                    }
+                };
             }
             conn.Close();
         }
@@ -204,44 +239,50 @@ public class CartsRepository : ICartsRepository
         return entity;
     }
 
-    public IList<CartsEntity> GetAllCartItems(string userId)
+    public CartsEntity GetCartById(string id)
     {
-        IList<CartsEntity> entities = new List<CartsEntity>();
-
+        CartsEntity entity = null;
         using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            conn.Open();
-            
-            var sql = "select * from carts where userid=@userId";
+            var sql = "select * from carts where id=@id";
             using var cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.Add("@userId", MySqlDbType.VarChar, 36).Value = userId;
-
-            var table = new DataTable();
+            var idParam = new MySqlParameter("@id", MySqlDbType.VarChar, 32)
+            {
+                Value = id
+            };
+            cmd.Parameters.Add(idParam);
             using var adapter = new MySqlDataAdapter(cmd);
-
+            var table = new DataTable();
             try
             {
                 adapter.Fill(table);
             }
-            catch (InvalidOperationException e)
+            catch(Exception ex)
             {
-                // log error
+                Console.WriteLine(ex.Message);
             }
-
-            foreach (DataRow row in table.Rows)
+            if (table.Rows.Count > 0)
             {
-                entities.Add(new CartsEntity(row));
+                DataRow row = table.Rows[0];
+                entity = new CartsEntity
+                {
+                    Id = Convert.ToString(row["id"]),
+                    UserId = Convert.ToString(row["userid"]),
+                    Quantity = Convert.ToInt32(row["quantity"]),
+                    Product = new ProductEntity
+                    {
+                        Id = Convert.ToString(row["productId"])
+                    }
+                };
             }
-            
             conn.Close();
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            // log error
+            Console.WriteLine(ex.Message);
         }
-
-        return entities;
+        return entity;
     }
 
     public bool DeleteAllCartItems(string userId)

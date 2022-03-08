@@ -11,36 +11,39 @@ namespace EPhoneApi.Controllers;
 [Route("[controller]")]
 public class CartsController : ControllerBase
 {
-    private ICartsRepository _cartRepo;
+    private readonly ICartsRepository _repository;
 
-    public CartsController(ICartsRepository cartRepo)
+    public CartsController(ICartsRepository repository)
     {
-        _cartRepo = cartRepo;
+        _repository = repository;
     }
 
     //This will add to cart
     //add to cart and update base on productId
     [HttpPost]
-    public IActionResult AddItemToCart(CartInfo cartinfo)
+    public IActionResult AddItemToCart(AddCartInfo addCartInfo)
     {
-        bool success = false;
+        bool success;
         var userId = (string) HttpContext.Items["UserId"]; //get user id from token   
-        var cartEntity = _cartRepo.GetCart(userId, cartinfo.ProductId);
+        var cartEntity = _repository.GetCart(userId, addCartInfo.ProductId);
         if (cartEntity == null)
         {
             cartEntity = new CartsEntity
             {
                 Id = Guid.NewGuid().ToString().ToLower(),
-                ProductId = cartinfo.ProductId,
                 UserId = userId,
-                Quantity = 1
+                Quantity = 1,
+                Product = new ProductEntity
+                {
+                    Id = addCartInfo.ProductId
+                }
             };
-            success = _cartRepo.AddItemToCart(cartEntity);
+            success = _repository.AddItemToCart(cartEntity);
         }
         else
         {
             cartEntity.Quantity += 1;
-            success = _cartRepo.UpdateCartItem(cartEntity);
+            success = _repository.UpdateCartItem(cartEntity);
         }
 
         if (success)
@@ -54,30 +57,37 @@ public class CartsController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{id}")]
-    public IActionResult GetCartDetails(string id)
+    public IActionResult GetCartDetails()
     {
-        var entity = _cartRepo.GetCartDetail(id);
-        return Ok(entity);
+        var userId = (string) HttpContext.Items["UserId"];
+        var cartDetails = _repository.GetCartDetails(userId)
+            .Select(c => new
+            {
+                c.Id,
+                c.Product.ProductName,
+                c.Quantity,
+                c.Product.Price
+            });
+        return Ok(cartDetails);
     }
 
-    //This delete cart items
-    [HttpDelete]
-    public IActionResult DeleteItemFromCart(CartsEntity entity)
+    [HttpPut]
+    public IActionResult UpdateCartItem(IList<UpdateCartInfo> cartInfoList)
     {
-        if (_cartRepo.DeleteCartItem(entity.Id))
+        foreach (var cartInfo in cartInfoList)
         {
-            return Ok();
+            if (cartInfo.Quantity < 1)
+            {
+                _repository.DeleteCartItem(cartInfo.Id);
+            }
+            else
+            {
+                var cartEntity = _repository.GetCartById(cartInfo.Id);
+                cartEntity.Quantity = cartInfo.Quantity;
+                _repository.UpdateCartItem(cartEntity);
+            }
         }
 
-        return BadRequest(new {Message = "Error Removing Item from Cart"});
-    }
-    //GetAllUserCartItem for display
-    [HttpGet]
-    [Route("{Userid}")]
-    public IActionResult GetAllCartItems(string userId)
-    {
-        IList<CartsEntity> cartList = _cartRepo.GetAllCartItems(userId);
-        return Ok(cartList);
+        return Ok();
     }
 }

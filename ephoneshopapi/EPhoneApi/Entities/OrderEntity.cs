@@ -8,6 +8,7 @@ public class OrderEntity
     public DateTime OrderDate { get; set; }
     public DateTime PaymentDate { get; set; }
     public string ConfirmationNumber { get; set; }
+    public double TotalCost { get; set; }
     
     public UserAddressEntity ShippingAddress { get; set; }
     public UserAddressEntity BillingAddress { get; set; }

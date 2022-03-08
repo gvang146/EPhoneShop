@@ -62,28 +62,26 @@ public class ProductRepository : IProductRepository
         return prodList;
     }
 
-    public List<ProductEntity> GetProductByBrand(string brand)
+    public ProductEntity GetProductByBrand(string brand)
     {
-        var prodList = new List<ProductEntity>();
-        //establishing the connection
-        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
+        ProductEntity productEntity = null;
+        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            connect.Open();
+            conn.Open();
 
             var sql = "select * from product where brand=@brand";
 
-            // creating command
-            using var cmd = new MySqlCommand(sql, connect);
-            //inserting params
-            var brandParam = new MySqlParameter("@brand", MySqlDbType.VarChar, 36)
-            { 
+            using var cmd = new MySqlCommand(sql, conn);
+            var productBrand = new MySqlParameter("@brand", MySqlDbType.VarChar, 36)
+            {
                 Value = brand
             };
-            cmd.Parameters.Add(brandParam);
-            // execute command when called and populates to the table
+            cmd.Parameters.Add(productBrand);
+
             using var adapter = new MySqlDataAdapter(cmd);
             var table = new DataTable();
+
             try
             {
                 adapter.Fill(table);
@@ -91,51 +89,43 @@ public class ProductRepository : IProductRepository
             catch (InvalidOperationException e)
             {
                 // log error
-                Console.WriteLine(e.Message);
             }
 
             if (table.Rows.Count > 0)
             {
-                foreach (DataRow row in table.Rows)
-                {
-                    var entity = new ProductEntity(row);
-                    prodList.Add(entity);
-
-                }
-
+                productEntity = new ProductEntity(table.Rows[0]);
             }
 
-            connect.Close();
+            conn.Close();
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
             // Log error
         }
-        return prodList;
+
+        return productEntity;
     }
 
-    public List<ProductEntity> GetProductBySpeed(string speed)
+    public ProductEntity GetProductBySpeed(string speed)
     {
-        var prodList = new List<ProductEntity>();
-        //establishing the connection
-        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
+        ProductEntity productEntity = null;
+        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            connect.Open();
+            conn.Open();
 
             var sql = "select * from product where speed=@speed";
 
-            // creating command
-            using var cmd = new MySqlCommand(sql, connect);
-            //inserting params
+            using var cmd = new MySqlCommand(sql, conn);
             var speedParam = new MySqlParameter("@speed", MySqlDbType.VarChar, 36)
             {
                 Value = speed
             };
             cmd.Parameters.Add(speedParam);
-            // execute command when called and populates to the table
+
             using var adapter = new MySqlDataAdapter(cmd);
             var table = new DataTable();
+
             try
             {
                 adapter.Fill(table);
@@ -143,50 +133,42 @@ public class ProductRepository : IProductRepository
             catch (InvalidOperationException e)
             {
                 // log error
-                Console.WriteLine(e.Message);
             }
 
             if (table.Rows.Count > 0)
             {
-                foreach (DataRow row in table.Rows)
-                {
-                    var entity = new ProductEntity(row);
-                    prodList.Add(entity);
-
-                }
-
+                productEntity = new ProductEntity(table.Rows[0]);
             }
 
-            connect.Close();
+            conn.Close();
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
             // Log error
         }
-        return prodList;
+
+        return productEntity;
     }
-    public List<ProductEntity> GetProductByProcessors(string processor)
+    public ProductEntity GetProductByProcessors(string processor)
     {
-        var prodList = new List<ProductEntity>();
-        //establishing the connection
-        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
+        ProductEntity productEntity = null;
+        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            connect.Open();
+            conn.Open();
 
-            var sql = "select * from product where processors=@processors";
+            var sql = "select * from product where processor=@processor";
 
-            // creating command
-            using var cmd = new MySqlCommand(sql, connect);
-            //inserting params
-            var procParam = new MySqlParameter("@processors", MySqlDbType.VarChar, 36)
+            using var cmd = new MySqlCommand(sql, conn);
+            var proParam = new MySqlParameter("@processor", MySqlDbType.VarChar, 36)
             {
                 Value = processor
             };
-            cmd.Parameters.Add(procParam);
-            // execute command when called and populates to the table
+            cmd.Parameters.Add(proParam);
+
             using var adapter = new MySqlDataAdapter(cmd);
             var table = new DataTable();
+
             try
             {
                 adapter.Fill(table);
@@ -194,48 +176,42 @@ public class ProductRepository : IProductRepository
             catch (InvalidOperationException e)
             {
                 // log error
-                Console.WriteLine(e.Message);
             }
 
             if (table.Rows.Count > 0)
             {
-                foreach (DataRow row in table.Rows)
-                {
-                    var entity = new ProductEntity(row);
-                    prodList.Add(entity);
-
-                }
+                productEntity = new ProductEntity(table.Rows[0]);
             }
-            connect.Close();
+
+            conn.Close();
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
             // Log error
         }
-        return prodList;
+
+        return productEntity;
     }
-    public List<ProductEntity> GetProductByPrice(string price)
+    public ProductEntity GetProductByPrice(string price)
     {
-        var prodList = new List<ProductEntity>();
-        //establishing the connection
-        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
+        ProductEntity productEntity = null;
+        using var conn = new MySqlConnection(_appSettings.DbConnectionString);
         try
         {
-            connect.Open();
+            conn.Open();
 
             var sql = "select * from product where price=@price";
 
-            // creating command
-            using var cmd = new MySqlCommand(sql, connect);
-            //inserting params
-            var priceParam = new MySqlParameter("@price", MySqlDbType.VarChar, 36)
+            using var cmd = new MySqlCommand(sql, conn);
+            var priceParam = new MySqlParameter("@processor", MySqlDbType.VarChar, 36)
             {
                 Value = price
             };
             cmd.Parameters.Add(priceParam);
-            // execute command when called and populates to the table
+
             using var adapter = new MySqlDataAdapter(cmd);
             var table = new DataTable();
+
             try
             {
                 adapter.Fill(table);
@@ -243,26 +219,21 @@ public class ProductRepository : IProductRepository
             catch (InvalidOperationException e)
             {
                 // log error
-                Console.WriteLine(e.Message);
             }
 
             if (table.Rows.Count > 0)
             {
-                foreach (DataRow row in table.Rows)
-                {
-                    var entity = new ProductEntity(row);
-                    prodList.Add(entity);
-
-                }
-
+                productEntity = new ProductEntity(table.Rows[0]);
             }
-            connect.Close();
+
+            conn.Close();
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
             // Log error
         }
-        return prodList;
+
+        return productEntity;
     }
 
 }

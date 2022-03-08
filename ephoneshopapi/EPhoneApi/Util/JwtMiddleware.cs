@@ -1,6 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using EPhoneApi.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -17,13 +16,13 @@ public class JwtMiddleware
         _appSettings = appSettings.Value;
     }
     
-    public async Task Invoke(HttpContext context) //, IUserAuthenticationService userAuthenticationService)
+    public async Task Invoke(HttpContext context)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
         if (token != null)
         {
-            AttachUserToContext(context, token); //, userAuthenticationService, token);
+            AttachUserToContext(context, token);
         }
 
         await _next(context);
@@ -49,7 +48,7 @@ public class JwtMiddleware
             var userId = jwtToken.Claims.First(x => x.Type == "id").Value;
 
             // attach UserId to context on successful jwt validation
-            context.Items["UserId"] = userId; //userAuthenticationService.Repos.GetCustomerById(userId);
+            context.Items["UserId"] = userId;
         }
         catch
         {

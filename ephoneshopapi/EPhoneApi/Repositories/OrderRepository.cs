@@ -80,6 +80,7 @@ public class OrderRepository : IOrderRepository
                     o.orderdate,
                     o.paymentdate,
                     o.confirmationnumber,
+                    o.totalcost,
                     shipaddr.id shipping_address_id,
                     shipaddr.address shipping_address,
                     shipaddr.city shipping_city,
@@ -137,6 +138,7 @@ public class OrderRepository : IOrderRepository
                     OrderDate = Convert.ToDateTime(table.Rows[0]["orderdate"]),
                     PaymentDate = Convert.ToDateTime(table.Rows[0]["paymentdate"]),
                     ConfirmationNumber = Convert.ToString(table.Rows[0]["ConfirmationNumber"]),
+                    TotalCost = Convert.ToDouble(table.Rows[0]["totalcost"]),
                     ShippingAddress = new UserAddressEntity
                     {
                         Id = Convert.ToString(table.Rows[0]["shipping_address_id"]),
@@ -201,6 +203,8 @@ public class OrderRepository : IOrderRepository
 
             try
             {
+                InsertUserAddress(conn, transaction, entity.ShippingAddress);
+                InsertUserAddress(conn, transaction, entity.BillingAddress);
                 InsertOrder(conn, transaction, entity);
 
                 foreach (var orderDetailsEntity in entity.OrderDetails)
@@ -233,11 +237,31 @@ public class OrderRepository : IOrderRepository
 
         return success;
     }
+
+    private void InsertUserAddress(MySqlConnection conn, MySqlTransaction trans, UserAddressEntity entity)
+    {
+        var sql = "insert into user_address(id, userid, address, city, state, zip) " +
+                  "values (@id, null, @address, @city, @state, @zip)";
+
+        using var cmd = new MySqlCommand(sql, conn);
+        var idParam = new MySqlParameter("@id", MySqlDbType.VarChar, 36) {Value = entity.Id};
+        cmd.Parameters.Add(idParam);
+        var addressParam = new MySqlParameter("@address", MySqlDbType.VarChar, 256) {Value = entity.Address};
+        cmd.Parameters.Add(addressParam);
+        var cityParam = new MySqlParameter("@city", MySqlDbType.VarChar, 120) {Value = entity.City};
+        cmd.Parameters.Add(cityParam);
+        var stateParam = new MySqlParameter("@state", MySqlDbType.VarChar, 2) {Value = entity.State};
+        cmd.Parameters.Add(stateParam);
+        var zipParam = new MySqlParameter("@zip", MySqlDbType.VarChar, 25) {Value = entity.Zip};
+        cmd.Parameters.Add(zipParam);
+
+        cmd.ExecuteNonQuery();
+    }
     
     private void InsertOrder(MySqlConnection conn, MySqlTransaction trans, OrderEntity entity)
     {
-        var sql = "insert into orders (id, userid, shippingaddressid, billingaddressid, status, orderdate, paymentdate, confirmationnumber) " +
-                  "values (@id, @userId, @shippingAddressId, @billingAddressId, @status, @orderDate, @paymentDate, @confirmationNumber)";
+        var sql = "insert into orders (id, userid, shippingaddressid, billingaddressid, status, orderdate, paymentdate, confirmationnumber, totalcost) " +
+                  "values (@id, @userId, @shippingAddressId, @billingAddressId, @status, @orderDate, @paymentDate, @confirmationNumber, @totalCost)";
 
         using var cmd = new MySqlCommand(sql, conn, trans);
         cmd.Parameters.Add("@id", MySqlDbType.VarChar, 36).Value = entity.Id;
@@ -248,6 +272,7 @@ public class OrderRepository : IOrderRepository
         cmd.Parameters.Add("@orderDate", MySqlDbType.DateTime).Value = entity.OrderDate;
         cmd.Parameters.Add("@paymentDate", MySqlDbType.DateTime).Value = entity.PaymentDate;
         cmd.Parameters.Add("@confirmationNumber", MySqlDbType.VarChar, 10).Value = entity.ConfirmationNumber;
+        cmd.Parameters.Add("@totalCost", MySqlDbType.Double).Value = entity.TotalCost;
 
         cmd.ExecuteNonQuery();
     }
