@@ -88,6 +88,10 @@ export class ProductsComponent implements OnInit {
       this.refreshProList();
     }
     this.service.GetProductByBrand(selectedBrands).subscribe(data =>{
+      if(this.selectedProcessors != [] || this.selectedSpeeds != []){
+        this.selectedProcessors = [];
+        this.selectedSpeeds = [];
+      }
       this.filteredProducts=data;
       this.ProductsList=this.filteredProducts;
     })
@@ -98,6 +102,10 @@ export class ProductsComponent implements OnInit {
       this.refreshProList();
     }
     this.service.GetProductByProcessor(selectedProcessors).subscribe(data =>{
+      if(this.selectedBrands != [] || this.selectedSpeeds != []){
+        this.selectedBrands = [];
+        this.selectedSpeeds = [];
+      }
       this.filteredProducts=data;
       this.ProductsList=this.filteredProducts;
     })
@@ -108,6 +116,10 @@ export class ProductsComponent implements OnInit {
       this.refreshProList();
     }
     this.service.GetProductBySpeed(selectedSpeeds).subscribe(data => {
+      if(this.selectedBrands != [] || this.selectedProcessors != []){
+        this.selectedBrands = [];
+        this.selectedProcessors = [];
+      }
       this.filteredProducts=data;
       this.ProductsList=this.filteredProducts;
     })
@@ -147,5 +159,3 @@ export class ProductsComponent implements OnInit {
     error => console.log(error));
   }
 }
-
-

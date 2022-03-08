@@ -1,31 +1,32 @@
 <div clas="container">
     <div class="filter">
-        <mat-label>Filter By Features</mat-label>
-        <mat-divider></mat-divider>
-        <mat-list role="list">
-            <mat-accordion>
-                <mat-label class="label">Processors</mat-label>
-                <mat-divider></mat-divider>
-                <mat-selection-list #Processors [(ngModel)]="selectedProcessors" (ngModelChange)="filterProcessor($event)">
-                    <mat-list-option *ngFor="let processor of typesOfProcessors" value="{{processor}}">
-                        {{processor}}
-                    </mat-list-option>
-                </mat-selection-list>
-                <mat-divider></mat-divider>
+        <!-- <mat-label>Filter By Features</mat-label>
+        <mat-divider></mat-divider> -->
+        <mat-list role="list"><mat-accordion>
+            <mat-label class="label">Filter By Processors</mat-label>
+            <mat-divider></mat-divider>
+            <mat-selection-list #Processors [(ngModel)]="selectedProcessors" (ngModelChange)="filterProcessor($event)">
+                <mat-list-option *ngFor="let processor of typesOfProcessors" value="{{processor}}">
+                    {{processor}}
+                </mat-list-option>
+            </mat-selection-list>
+            <mat-divider></mat-divider>
+            <mat-label class="label">Filter By Brands</mat-label>
+            <mat-divider></mat-divider>
             <mat-selection-list #Brand [(ngModel)]="selectedBrands" (ngModelChange)="filterBrand($event)">
                 <mat-list-option *ngFor="let brand of typesOfBrand" value="{{brand}}">
                     {{brand}}
                 </mat-list-option>
             </mat-selection-list>
             <mat-divider></mat-divider>
-            <mat-label class="label">Speed</mat-label>
-                <mat-divider></mat-divider>
+            <mat-label class="label">Filter By Speed</mat-label>
+            <mat-divider></mat-divider>
             <mat-selection-list #Speed [(ngModel)]="selectedSpeeds" (ngModelChange)="filterSpeed($event)">
                 <mat-list-option *ngFor="let speed of typesOfSpeed" value="{{speed}}">
                     {{speed}}
                 </mat-list-option>
             </mat-selection-list>
-            </mat-accordion>
+        </mat-accordion>
         </mat-list>
     </div>
     <div class="cards">

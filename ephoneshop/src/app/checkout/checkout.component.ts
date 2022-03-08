@@ -46,6 +46,10 @@ export class CheckoutComponent implements OnInit {
   }
   openDialog()
   {
+    if (this.BillForm && this.CCardForm != '')
+    {
+      
+    }
     this.BillForm.reset();
     this.CCardForm.reset();
     this.dialog.open(DialogCheckoutComponent);
