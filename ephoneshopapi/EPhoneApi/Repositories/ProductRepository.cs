@@ -264,5 +264,147 @@ public class ProductRepository : IProductRepository
         }
         return prodList;
     }
+    /*-----------------------------------------------------*/
+    public List<ProductEntity> GetProductByPriceMin()
+    {
+        var prodList = new List<ProductEntity>();
+        //establishing the connection
+        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
+        try
+        {
+            connect.Open();
+            //sql query to order by descending price
+            var sql = "select * from product order by price DESC";
 
+            // creating command
+            using var cmd = new MySqlCommand(sql, connect);
+        
+            // execute command when called and populates to the table
+            using var adapter = new MySqlDataAdapter(cmd);
+            var table = new DataTable();
+            try
+            {
+                adapter.Fill(table);
+            }
+            catch (InvalidOperationException e)
+            {
+                // log error
+                Console.WriteLine(e.Message);
+            }
+
+            if (table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    var entity = new ProductEntity(row);
+                    prodList.Add(entity);
+
+                }
+
+            }
+            connect.Close();
+        }
+        catch (Exception ex)
+        {
+            // Log error
+        }
+        return prodList;
+    }
+
+    public List<ProductEntity> GetProductByPriceMax()
+    {
+        var prodList = new List<ProductEntity>();
+        //establishing the connection
+        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
+        try
+        {
+            connect.Open();
+            //sql query to order by descending price
+            var sql = "select * from product order by price ASC";
+
+            // creating command
+            using var cmd = new MySqlCommand(sql, connect);
+
+            // execute command when called and populates to the table
+            using var adapter = new MySqlDataAdapter(cmd);
+            var table = new DataTable();
+            try
+            {
+                adapter.Fill(table);
+            }
+            catch (InvalidOperationException e)
+            {
+                // log error
+                Console.WriteLine(e.Message);
+            }
+
+            if (table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    var entity = new ProductEntity(row);
+                    prodList.Add(entity);
+
+                }
+
+            }
+            connect.Close();
+        }
+        catch (Exception ex)
+        {
+            // Log error
+        }
+        return prodList;
+    }
+
+    public List<ProductEntity> GetProductByPriceSpecfic(string price)
+    {
+         var prodList = new List<ProductEntity>();
+        //establishing the connection
+        using var connect = new MySqlConnection(_appSettings.DbConnectionString);
+        try
+        {
+            connect.Open();
+
+            var sql = "select * from products where Price >= @price order by price ASC";
+
+            // creating command
+            using var cmd = new MySqlCommand(sql, connect);
+            //inserting params
+            var priceParam = new MySqlParameter("@price", MySqlDbType.VarChar, 36)
+            {
+                Value = price
+            };
+            cmd.Parameters.Add(priceParam);
+            // execute command when called and populates to the table
+            using var adapter = new MySqlDataAdapter(cmd);
+            var table = new DataTable();
+            try
+            {
+                adapter.Fill(table);
+            }
+            catch (InvalidOperationException e)
+            {
+                // log error
+                Console.WriteLine(e.Message);
+            }
+
+            if (table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    var entity = new ProductEntity(row);
+                    prodList.Add(entity);
+
+                }
+
+            }
+            connect.Close();
+        }
+        catch (Exception ex)
+        {
+            // Log error
+        }
+        return prodList;
+    }
 }

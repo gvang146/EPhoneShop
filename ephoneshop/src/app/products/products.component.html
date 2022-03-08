@@ -31,10 +31,14 @@
             <mat-divider></mat-divider>
             <mat-label class="label">Price</mat-label>
                 <mat-divider></mat-divider>
-            <mat-selection-list #Price>
+            <!-- <mat-selection-list #Price>
                 <mat-list-option *ngFor="let price of typesOfPrice" value="{{price}}">
                     {{price}}
-                </mat-list-option>
+                </mat-list-option> -->
+                <mat-selection-list #Price  [(ngModel)]="selectedOption" (ngModelChange)="onNgModelChange($event)">
+                  <mat-list-option *ngFor="let price of typesOfPrice" value="{{price}}">
+                    {{price}}
+                  </mat-list-option>
             </mat-selection-list>
             </mat-accordion>
         </mat-list>
@@ -45,7 +49,7 @@
                 <mat-card-title>{{dataItem.productName}}</mat-card-title>
                 <mat-card-subtitle>{{dataItem.productDesc}}</mat-card-subtitle>
                 <img mat-card-image  src="../../assets/Images/phone 8.jpg">
-                <mat-card-content> 
+                <mat-card-content>
                                 Color: {{dataItem.color}}<br/>
                                 Speed: {{dataItem.speed}}<br/><br/>
                                 Price: ${{dataItem.price}}<br/>
@@ -53,7 +57,7 @@
                 <mat-card-actions>
                     <a href="/checkout" mat-raised-button color="primary" type="button">Add to Cart</a>
                 </mat-card-actions>
-            </mat-card> 
+            </mat-card>
         </div>
     </div>
 </div>

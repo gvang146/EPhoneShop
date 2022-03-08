@@ -50,4 +50,11 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetProductByPrice(value);
         return Ok(prodList);
     }
+
+    /*
+     public IActionResult GetProductPriceMin()
+    {
+        
+    }
+     */
 }

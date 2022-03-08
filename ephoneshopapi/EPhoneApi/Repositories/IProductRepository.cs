@@ -9,6 +9,9 @@ public interface IProductRepository
     public List<ProductEntity> GetProductByProcessors(string processor);
     public List<ProductEntity> GetProductByPrice(string price);
     public List<ProductEntity> GetProductBySpeed(string speed);
+    public List<ProductEntity> GetProductByPriceMin();
+    public List<ProductEntity> GetProductByPriceMax();
+    public List<ProductEntity> GetProductByPriceSpecfic(string price);
 
 }
 
