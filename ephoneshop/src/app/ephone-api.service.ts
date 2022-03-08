@@ -20,4 +20,13 @@ readonly APIUrl="https://localhost:7225/";
     return this.service.get<any>(this.APIUrl + 'Product/brand/' + brand)
   }
 
+  GetProductByProcessor(processor:string[]):Observable<any[]>
+  {
+    return this.service.get<any>(this.APIUrl + 'Product/processor/' + processor)
+  }
+
+  GetProductBySpeed(speed:string[]):Observable<any[]>
+  {
+    return this.service.get<any>(this.APIUrl + 'Product/speed/' + speed)
+  }
 }

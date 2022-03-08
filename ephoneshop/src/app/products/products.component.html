@@ -7,7 +7,7 @@
             <mat-accordion>
                 <mat-label class="label">Processors</mat-label>
                 <mat-divider></mat-divider>
-                <mat-selection-list #Processors>
+                <mat-selection-list #Processors [(ngModel)]="selectedProcessors" (ngModelChange)="filterProcessor($event)">
                     <mat-list-option *ngFor="let processor of typesOfProcessors" value="{{processor}}">
                         {{processor}}
                     </mat-list-option>
@@ -23,7 +23,7 @@
             <mat-divider></mat-divider>
             <mat-label class="label">Speed</mat-label>
                 <mat-divider></mat-divider>
-            <mat-selection-list #Speed>
+            <mat-selection-list #Speed [(ngModel)]="selectedSpeeds" (ngModelChange)="filterSpeed($event)">
                 <mat-list-option *ngFor="let speed of typesOfSpeed" value="{{speed}}">
                     {{speed}}
                 </mat-list-option>

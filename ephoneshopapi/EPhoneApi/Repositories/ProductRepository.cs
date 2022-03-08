@@ -164,42 +164,81 @@ public class ProductRepository : IProductRepository
         try
         {
             connect.Open();
-
-            var sql = "select * from product where speed=@speed";
-
-            // creating command
-            using var cmd = new MySqlCommand(sql, connect);
-            //inserting params
-            var speedParam = new MySqlParameter("@speed", MySqlDbType.VarChar, 36)
+            
+            if (speed.Contains(',')) 
             {
-                Value = speed
-            };
-            cmd.Parameters.Add(speedParam);
-            // execute command when called and populates to the table
-            using var adapter = new MySqlDataAdapter(cmd);
-            var table = new DataTable();
-            try
-            {
-                adapter.Fill(table);
-            }
-            catch (InvalidOperationException e)
-            {
-                // log error
-                Console.WriteLine(e.Message);
-            }
-
-            if (table.Rows.Count > 0)
-            {
-                foreach (DataRow row in table.Rows)
+                var sql = "select * from product where speed='" + speed.Split(",")[0] + "'";
+                for (int i = 0; i < speed.Split(',').Length; i++)
                 {
-                    var entity = new ProductEntity(row);
-                    prodList.Add(entity);
+                    sql += " OR speed='" + speed.Split(',')[i] + "'";
+                }
+
+                // creating command
+                using var cmd = new MySqlCommand(sql, connect);
+                // execute command when called and populates to the table
+                using var adapter = new MySqlDataAdapter(cmd);
+                var table = new DataTable();
+                try
+                {
+                    adapter.Fill(table);
+                }
+                catch (InvalidOperationException e)
+                {
+                    // log error
+                    Console.WriteLine(e.Message);
+                }
+
+                if (table.Rows.Count > 0)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        var entity = new ProductEntity(row);
+                        prodList.Add(entity);
+
+                    }
 
                 }
 
+                connect.Close();
+            }
+            else {
+                var sql = "select * from product where speed=@speed";
+
+                // creating command
+                using var cmd = new MySqlCommand(sql, connect);
+                //inserting params
+                var speedParam = new MySqlParameter("@speed", MySqlDbType.VarChar, 36)
+                {
+                    Value = speed
+                };
+                cmd.Parameters.Add(speedParam);
+                // execute command when called and populates to the table
+                using var adapter = new MySqlDataAdapter(cmd);
+                var table = new DataTable();
+                try
+                {
+                    adapter.Fill(table);
+                }
+                catch (InvalidOperationException e)
+                {
+                    // log error
+                    Console.WriteLine(e.Message);
+                }
+
+                if (table.Rows.Count > 0)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        var entity = new ProductEntity(row);
+                        prodList.Add(entity);
+
+                    }
+
+                }
+
+                connect.Close();
             }
 
-            connect.Close();
         }
         catch (Exception ex)
         {
@@ -207,6 +246,7 @@ public class ProductRepository : IProductRepository
         }
         return prodList;
     }
+    //public List<ProductEntity> GetSearched
     public List<ProductEntity> GetProductByProcessors(string processor)
     {
         var prodList = new List<ProductEntity>();
@@ -215,40 +255,77 @@ public class ProductRepository : IProductRepository
         try
         {
             connect.Open();
+            if (!processor.Contains(','))
+            {
 
-            var sql = "select * from product where processors=@processors";
+                var sql = "select * from product where processors=@processors";
 
-            // creating command
-            using var cmd = new MySqlCommand(sql, connect);
-            //inserting params
-            var procParam = new MySqlParameter("@processors", MySqlDbType.VarChar, 36)
-            {
-                Value = processor
-            };
-            cmd.Parameters.Add(procParam);
-            // execute command when called and populates to the table
-            using var adapter = new MySqlDataAdapter(cmd);
-            var table = new DataTable();
-            try
-            {
-                adapter.Fill(table);
-            }
-            catch (InvalidOperationException e)
-            {
-                // log error
-                Console.WriteLine(e.Message);
-            }
-
-            if (table.Rows.Count > 0)
-            {
-                foreach (DataRow row in table.Rows)
+                // creating command
+                using var cmd = new MySqlCommand(sql, connect);
+                //inserting params
+                var procParam = new MySqlParameter("@processors", MySqlDbType.VarChar, 36)
                 {
-                    var entity = new ProductEntity(row);
-                    prodList.Add(entity);
-
+                    Value = processor
+                };
+                cmd.Parameters.Add(procParam);
+                // execute command when called and populates to the table
+                using var adapter = new MySqlDataAdapter(cmd);
+                var table = new DataTable();
+                try
+                {
+                    adapter.Fill(table);
                 }
+                catch (InvalidOperationException e)
+                {
+                    // log error
+                    Console.WriteLine(e.Message);
+                }
+
+                if (table.Rows.Count > 0)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        var entity = new ProductEntity(row);
+                        prodList.Add(entity);
+
+                    }
+                }
+                connect.Close();
             }
-            connect.Close();
+            else
+            {
+                var sql = "select * from product where processors='" + processor.Split(",")[0] + "'";
+                for (int i = 0; i < processor.Split(',').Length; i++)
+                {
+                    sql += " OR processors='" + processor.Split(',')[i] + "'";
+                }
+
+                // creating command
+                using var cmd = new MySqlCommand(sql, connect);
+                // execute command when called and populates to the table
+                using var adapter = new MySqlDataAdapter(cmd);
+                var table = new DataTable();
+                try
+                {
+                    adapter.Fill(table);
+                }
+                catch (InvalidOperationException e)
+                {
+                    // log error
+                    Console.WriteLine(e.Message);
+                }
+
+                if (table.Rows.Count > 0)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        var entity = new ProductEntity(row);
+                        prodList.Add(entity);
+
+                    }
+                }
+                connect.Close();
+            }
         }
         catch (Exception ex)
         {
@@ -265,7 +342,7 @@ public class ProductRepository : IProductRepository
         {
             connect.Open();
 
-            var sql = "select * from product where price=@price";
+            var sql = "select * from product where price>@price";
 
             // creating command
             using var cmd = new MySqlCommand(sql, connect);

@@ -36,9 +36,10 @@ export class ProductsComponent implements OnInit {
   typesOfProcessors: string[] = 
   [ 
     'Level 1 Processor', 
-    'Level 2 Processor', 
     'Level 3 Processor', 
-    'Level 4 Processor',
+    'Level 4 Processor', 
+    'Level 7 Processor',
+    'Level 10 Processor',
     'Ravi Processor'
 ];
   typesOfBrand: string[] = 
@@ -72,6 +73,14 @@ export class ProductsComponent implements OnInit {
   }
   
   selectedBrands:string[];
+  selectedProcessors:string[];
+  selectedSpeeds:string[];
+  selectedPrices:string[];
+
+
+
+  
+
 
   filterBrand(selectedBrands:string[]){
     //console.log(selectedBrands);
@@ -81,7 +90,26 @@ export class ProductsComponent implements OnInit {
     }
     this.service.GetProductByBrand(selectedBrands).subscribe(data =>{
       this.filteredProducts=data;
-      console.log(this.filteredProducts)
+      this.ProductsList=this.filteredProducts;
+    })
+  }
+
+  filterProcessor(selectedProcessors:string[]){
+    if(selectedProcessors.length==0){
+      this.refreshProList();
+    }
+    this.service.GetProductByProcessor(selectedProcessors).subscribe(data =>{
+      this.filteredProducts=data;
+      this.ProductsList=this.filteredProducts;
+    })
+  }
+
+  filterSpeed(selectedSpeeds:string[]){
+    if(selectedSpeeds.length==0){
+      this.refreshProList();
+    }
+    this.service.GetProductBySpeed(selectedSpeeds).subscribe(data => {
+      this.filteredProducts=data;
       this.ProductsList=this.filteredProducts;
     })
   }

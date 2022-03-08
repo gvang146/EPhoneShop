@@ -30,21 +30,24 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetProductByBrand(value);
         return Ok(prodList);
     }
-    [HttpGet("processors")]
+    [HttpGet]
+    [Route("processor/{value}")]
     public IActionResult GetProductByProcessors(string value)
     {
         List<ProductEntity> prodList = new List<ProductEntity>();
         prodList = _prodRepo.GetProductByProcessors(value);
         return Ok(prodList);
     }
-    [HttpGet("speed")]
+    [HttpGet]
+    [Route("speed/{value}")]
     public IActionResult GetProductBySpeed(string value)
     {
         List<ProductEntity> prodList = new List<ProductEntity>();
         prodList = _prodRepo.GetProductBySpeed(value);
         return Ok(prodList);
     }
-    [HttpGet("price")]
+    [HttpGet]
+    [Route("price/{value}")]
     public IActionResult GetProductByPrice(string value)
     {
         List<ProductEntity> prodList = new List<ProductEntity>();
