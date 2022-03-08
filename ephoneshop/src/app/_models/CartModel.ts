@@ -1,3 +1,3 @@
 export class Cart {
-    productId: string = '';
+    productId: string;
 }

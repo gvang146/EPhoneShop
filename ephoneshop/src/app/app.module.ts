@@ -30,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule} from "@angular/material/dialog";
 import { DialogCheckoutComponent } from './components/dialog-checkout/dialog-checkout.component';
 import { ShopcartComponent } from './components/shopcart/shopcart.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ShopcartComponent } from './components/shopcart/shopcart.component';
     FormsModule,
     MatIconModule,
     MatDialogModule,
+    MatTableModule
     
   ],
   providers: [EphoneAPIService,SignupService,UserService, AuthGuard],

@@ -13,6 +13,7 @@ import { LoginMessageService } from '../_services/LoginMessage.service';
 })
 export class NavbarComponent implements OnInit {
   currentUser: User = new User();
+  firstName: any;
   isLoggedIn: boolean = false;
   subscription: Subscription;
   loading = false;
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.loginMessageService.getMessage().subscribe(msg => this.isLoggedIn = msg);
-
+    this.firstName = localStorage.getItem('firstname');
     let userInfo = localStorage.getItem('token');
     if (userInfo != null)
     {

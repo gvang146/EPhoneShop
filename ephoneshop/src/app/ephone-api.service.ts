@@ -11,13 +11,27 @@ readonly APIUrl="https://localhost:7225/";
 
   constructor(private service :HttpClient) { }
 
+  //GetAllProducts
   GetAllProducts():Observable<any[]>
   {
     return this.service.get<any>(this.APIUrl + 'Product');
   }
+
+  //Get CartDetails
+  GetCartDetails():Observable<any[]>
+  {
+    let token = localStorage.getItem('token') ?? '';
+    let headers = new HttpHeaders({
+      'Content-Type' : 'application/json; charset=UTF-8',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.service.get<any>(this.APIUrl + 'Carts', {headers: headers}); //defined that this line will have these headers
+  }
+
+  //
   GetCartItems(userId: any)
   {
-    return this.service.get<any>(this.APIUrl + 'Cart/' + userId)
+    return this.service.get<any>(this.APIUrl + 'Carts/' + userId)
   }
   //Add To cart method
   AddItemToCart(cart: Cart)
