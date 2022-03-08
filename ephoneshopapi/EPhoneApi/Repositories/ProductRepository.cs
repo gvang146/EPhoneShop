@@ -361,7 +361,7 @@ public class ProductRepository : IProductRepository
     }
 
     [HttpGet] 
-    [Route({"price")]
+    [Route("price")]
     public List<ProductEntity> GetProductByPriceSpecfic(string price)
     {
          var prodList = new List<ProductEntity>();
