@@ -31,7 +31,6 @@ import { MatDialogModule} from "@angular/material/dialog";
 import { DialogCheckoutComponent } from './components/dialog-checkout/dialog-checkout.component';
 import { ShopcartComponent } from './components/shopcart/shopcart.component';
 import {MatTableModule} from '@angular/material/table';
-import { TotalComponent } from './checkout/total/total.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +39,7 @@ import { TotalComponent } from './checkout/total/total.component';
     NavbarComponent,
     ProductsComponent,
     ShowCheckoutComponent,
-    ShopcartComponent,
-    TotalComponent,
+    ShopcartComponent
     
   ],
   //For Dialogs
