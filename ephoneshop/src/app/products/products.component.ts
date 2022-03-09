@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { EphoneAPIService } from '../ephone-api.service';
 import { Cart } from '../_models/CartModel'
 import { User } from '../_models/UserLoginModel';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -36,7 +35,7 @@ export class ProductsComponent implements OnInit {
   }
   
   
-  constructor(private service: EphoneAPIService) { }
+  constructor(private service: EphoneAPIService, private router : Router) { }
   
   
   typesOfProcessors: string[] = 
@@ -130,17 +129,21 @@ export class ProductsComponent implements OnInit {
   {
     
   }
+
   refreshProList(){
     this.service.GetAllProducts().subscribe(data => {
       this.ProductsList=data;
     })
   }
+
+
   GetCartItems(userId: string)
   {
     this.service.GetCartItems(userId).subscribe(data =>{
       this.cartList = data;
     })
   }
+
   //create cart of user
   CreateCartToAdd(productId: string)
   {
@@ -148,7 +151,12 @@ export class ProductsComponent implements OnInit {
     const cartinfo = new Cart();
     cartinfo.productId = productId;
     this.AddItemToCart(cartinfo);
-    alert("Item Successfully added to cart!");
+    if(localStorage.getItem("token") != null){
+      alert("Item Successfully added to cart!");
+    }else{
+      alert("Log in to add an item to cart");
+      this.router.navigateByUrl("/login");
+    }
   }
 
   AddItemToCart(cartInfo:Cart)
