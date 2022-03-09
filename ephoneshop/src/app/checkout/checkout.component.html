@@ -15,7 +15,7 @@
             <div class="col-50">
                 <mat-card-content>
                     <mat-card-title>Billing Address</mat-card-title>
-                    <form [formGroup]="BillForm" (onSubmit)="onSubmit()">
+                    <form [formGroup]="BillForm" (onSubmit)="onSubmit()" name="form1">
                         <div class="name">
                             <mat-form-field appearance="fill"> 
                                 <mat-label><i class="fa fa-user"></i> First Name</mat-label>
@@ -64,7 +64,7 @@
                         <i class="fa fa-cc-mastercard" style="color:red; margin-left: 10px;"></i>
                         <i class="fa fa-cc-discover" style="color:orange; margin-left: 10px;"></i>
                     </div>
-                    <form [formGroup]="CCardForm" (ngSubmit)="onSubmit">
+                    <form [formGroup]="CCardForm" (ngSubmit)="onSubmit" ng-required="true" name="Form2">
                         <mat-form-field  appearance="fill">
                             <mat-label> Name on Card</mat-label>
                             <input formControlName="cardName" placeholder="John More Doe" matInput>
@@ -87,7 +87,7 @@
                             <div class="col-50">
                                 <mat-form-field appearance="fill">
                                     <mat-label> CVV</mat-label>
-                                    <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="3" formControlName="cvv" placeholder="352" matInput>
+                                    <input id="check" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="3" formControlName="cvv" placeholder="352" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -95,11 +95,10 @@
                 </mat-card-content>
             </div>
           </div>
-          <mat-checkbox name="sameadr" style="margin-left: 10px;"> Shipping address same as billing</mat-checkbox>
         </mat-card>  
     </div>
     </div>
-    <div class="col-25">
+    <div class="col-25" *ngIf="cartDetails">
       <div class="container" style="margin-left: -50px">
         <h4> Cart
           <span class="price" style="color:black">
@@ -108,7 +107,7 @@
         </h4>
         <app-show-checkout></app-show-checkout>
         <hr>
-        <p>Total <span class="price" style="color:black" *ngIf="totalCost != null"><b>${{totalCost}}</b></span></p>
+        <p>Total <span class="price" style="color:black"><b>{{totalCost | currency:'USD':'symbol':'1.2-2'}}</b></span></p>
         <button color="primary" (click)="openDialog()" type="submit" mat-raised-button> Confirm Order </button>
       </div>
     </div>

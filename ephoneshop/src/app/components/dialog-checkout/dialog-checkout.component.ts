@@ -16,6 +16,6 @@ export class DialogCheckoutComponent implements OnInit {
   onClick()
   {
     this.dialog.closeAll()
-    this.router.navigateByUrl("/");
+    this.router.navigateByUrl("/products");
   }
 }

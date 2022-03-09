@@ -42,17 +42,15 @@ export class CheckoutComponent implements OnInit {
       cvv: ['',[Validators.required]]
     })
     this.refreshProList();
-    this.GetTotalCost();
   }
   openDialog()
   {
     if (this.BillForm && this.CCardForm != '')
     {
-      
-    }
-    this.BillForm.reset();
+      this.BillForm.reset();
     this.CCardForm.reset();
     this.dialog.open(DialogCheckoutComponent);
+    }
   }
   
   refreshProList(){
@@ -61,35 +59,30 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  GetTotalCost()
-  {
-    for(var index in this.cartDetails)
-    {
-      this.totalCost += this.cartDetails[index].price;
-    }
-  }
-
   onSubmit()
   {
-    this.BillForm.reset();
-    this.CCardForm.reset();
-    this.openDialog();
+    if(!this.CCardForm)
+    {
+      this.BillForm.reset();
+      this.CCardForm.reset();
+      this.openDialog();
     //this.router.navigateByUrl('/products');
+    }
+    else
+    {
+      alert("Please fill in the required areas before proceeding to checkout!");
+    }
+    
   }
-
-  //Sum function
-GetSumOfCart()
-{
-  for(var index in this.cartDetails)
-  {
-    this.totalCost += this.cartDetails[index].price;
-  }
-}
 
   GetCartDetails()
   {
     this.service.GetCartDetails().subscribe(data => {
       this.cartDetails = data;
-    })
+      for (let data of this.cartDetails)
+      {
+        this.totalCost += data.price * data.quantity;
+      }
+    });
   }
 }
