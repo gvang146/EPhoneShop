@@ -23,15 +23,17 @@ public class UserAuthenticationService : IUserAuthenticationService
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
     {
+        //check if user exists, if false returns null
         var userEntity = _repository.GetUserByEmail(model.Username);
         if (userEntity == null) return null;
-
+        // if user exists verify passwords match what is in the database, if false returns null
         if (!PasswordUtil.VerifyPassword(model.Password, userEntity.PasswordSalt, userEntity.PasswordHash))
         {
             return null;
         }
+        //if user exists and pass match, generate jwt 
         var token = GenerateJwtToken(userEntity);
-
+        //return a reponse with user info and access token (permission)
         return new AuthenticateResponse(userEntity, token);
     }
 

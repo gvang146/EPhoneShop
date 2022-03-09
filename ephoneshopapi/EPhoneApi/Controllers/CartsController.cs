@@ -87,8 +87,6 @@ public class CartsController : ControllerBase
                 _repository.UpdateCartItem(cartEntity);
             }
         }
-
         return Ok();
     }
-    
 }

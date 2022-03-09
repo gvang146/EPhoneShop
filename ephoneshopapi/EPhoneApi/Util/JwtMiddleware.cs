@@ -10,6 +10,7 @@ public class JwtMiddleware
     private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
 
+    //Middleware works with authorization
     public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
     {
         _next = next;
@@ -27,7 +28,7 @@ public class JwtMiddleware
 
         await _next(context);
     }
-
+    // check if token to ensure token is valid
     private void AttachUserToContext(HttpContext context, string token) // IUserAuthenticationService userAuthenticationService, string token)
     {
         try
@@ -47,6 +48,7 @@ public class JwtMiddleware
             var jwtToken = (JwtSecurityToken)validatedToken;
             var userId = jwtToken.Claims.First(x => x.Type == "id").Value;
 
+            // if value then attach into the HttpRequest
             // attach UserId to context on successful jwt validation
             context.Items["UserId"] = userId;
         }

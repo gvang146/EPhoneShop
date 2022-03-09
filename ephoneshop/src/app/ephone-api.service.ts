@@ -59,4 +59,10 @@ readonly APIUrl="https://localhost:7225/";
   {
     return this.service.get<any>(this.APIUrl + 'Product/speed/' + speed)
   }
+
+  //deleteAllCartItems
+  DeleteAllCartItems()
+  {
+    return this.service.delete(this.APIUrl + 'Carts');
+  }
 }
