@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { EphoneAPIService } from '../ephone-api.service';
 import { Cart } from '../_models/CartModel'
 import { User } from '../_models/UserLoginModel';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -35,7 +34,7 @@ export class ProductsComponent implements OnInit {
   }
   
   
-  constructor(private service: EphoneAPIService, private router : Router) { }
+  constructor(private service: EphoneAPIService) { }
   
   
   typesOfProcessors: string[] = 
@@ -155,7 +154,6 @@ export class ProductsComponent implements OnInit {
       alert("Item Successfully added to cart!");
     }else{
       alert("Log in to add an item to cart");
-      this.router.navigateByUrl("/login");
     }
   }
 
