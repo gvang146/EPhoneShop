@@ -101,11 +101,8 @@ public class ProductRepository : IProductRepository
                     {
                     var entity = new ProductEntity(row);
                     prodList.Add(entity);
-
                     }
-
                 }
-
                 connect.Close();
             }
             else
@@ -115,8 +112,6 @@ public class ProductRepository : IProductRepository
                 {
                     sql += " OR brand='" + brand.Split(',')[i]+ "'";
                 }
-                    
-
                     // creating command
                     using var cmd = new MySqlCommand(sql, connect);
                     using var adapter = new MySqlDataAdapter(cmd);
@@ -144,10 +139,6 @@ public class ProductRepository : IProductRepository
 
                     connect.Close();
             }
-            
-
-
-            
         }
         catch (Exception ex)
         {
