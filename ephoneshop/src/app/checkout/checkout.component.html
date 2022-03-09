@@ -14,8 +14,8 @@
           <div class="row">
             <div class="col-50">
                 <mat-card-content>
-                    <mat-card-title>Billing Address</mat-card-title>
-                    <form [formGroup]="BillForm" (onSubmit)="onSubmit()" name="form1">
+                    <mat-card-title>Billing Information</mat-card-title>
+                    <form [formGroup]="BillForm" (onSubmit)="onSubmit()">
                         <div class="name">
                             <mat-form-field appearance="fill"> 
                                 <mat-label><i class="fa fa-user"></i> First Name</mat-label>
@@ -30,6 +30,45 @@
                             <mat-label><i class="fa fa-envelope"></i> Email</mat-label>
                             <input formControlName="email" placeholder="john@example.com" matInput>
                         </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label><i class="fa fa-address-card-o"></i> Address</mat-label>
+                            <input formControlName="address" placeholder="542 W. 15th Street" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label><i class="fa fa-institution"></i> City</mat-label>
+                            <input formControlName="city" placeholder="New York" matInput>
+                        </mat-form-field>
+                        <div class="row">
+                            <div class="col-50">
+                                <mat-form-field appearance="fill">
+                                    <mat-label> State</mat-label>
+                                    <input maxlength="2" formControlName="state" placeholder="NY" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-50">
+                                <mat-form-field appearance="fill">
+                                    <mat-label> Zip</mat-label>
+                                    <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="5" formControlName="zip" placeholder="10001" matInput>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <mat-checkbox [(ngModel)]="hideShip" name="sameadr" style="margin-left: 10px;margin-bottom: 10px;"> Shipping Information same as Billing</mat-checkbox>
+                
+                <mat-card-content *ngIf="!hideShip">
+                    <mat-card-title>Shipping Information</mat-card-title>
+                    <form [formGroup]="BillForm" (onSubmit)="onSubmit()">
+                        <div class="name">
+                            <mat-form-field appearance="fill"> 
+                                <mat-label><i class="fa fa-user"></i> First Name</mat-label>
+                                <input formControlName="firstName" placeholder="John" matInput>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill"> 
+                                <mat-label><i class="fa fa-user"></i> Last Name</mat-label>
+                                <input formControlName="lastName" placeholder="Doe" matInput>
+                            </mat-form-field>
+                        </div>
                         <mat-form-field appearance="fill">
                             <mat-label><i class="fa fa-address-card-o"></i> Address</mat-label>
                             <input formControlName="address" placeholder="542 W. 15th Street" matInput>

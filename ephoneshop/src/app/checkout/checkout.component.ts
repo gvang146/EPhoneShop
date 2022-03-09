@@ -1,12 +1,25 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { EphoneAPIService } from 'src/app/ephone-api.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogCheckoutComponent } from '../components/dialog-checkout/dialog-checkout.component';
 import { CartDetails } from '../_models/CartDetailsModel';
-import { ThisReceiver } from '@angular/compiler';
+import { Directive, EventEmitter, Output } from '@angular/core';
+
+
+@Directive({
+  selector: '[onCreate]'
+})
+export class OnCreate {
+
+  @Output() onCreate: EventEmitter<any> = new EventEmitter<any>();
+  constructor() {}
+  ngOnInit() {      
+     this.onCreate.emit('dummy'); 
+  } 
+
+}
 
 @Component({
   selector: 'app-checkout',
@@ -20,9 +33,12 @@ export class CheckoutComponent implements OnInit {
   BillForm: any;
   CCardForm: any;
   cartDetails: CartDetails[];
+  hideShip:boolean;
   totalCost: number = 0;
 
   constructor(private service:EphoneAPIService, private formBuilder:FormBuilder, private router: Router, public dialog: MatDialog) { }
+  
+  
   ngOnInit(): void {
     this.GetCartDetails();
     this.BillForm = this.formBuilder.group({
@@ -43,6 +59,8 @@ export class CheckoutComponent implements OnInit {
     })
     this.refreshProList();
   }
+
+
   openDialog()
   {
     if (this.BillForm && this.CCardForm != '')
@@ -71,9 +89,8 @@ export class CheckoutComponent implements OnInit {
     else
     {
       alert("Please fill in the required areas before proceeding to checkout!");
-    }
-    
   }
+}
 
   GetCartDetails()
   {
