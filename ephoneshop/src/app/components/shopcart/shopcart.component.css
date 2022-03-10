@@ -18,6 +18,7 @@ button
 {
     margin: 5px;
     padding: 10px;
+    float:right;
 }
 mat-card-content
 {
@@ -30,11 +31,6 @@ mat-card-content
     align-items: center;
     float: left;
 }
-.btns
-{
-    float:right;
-    margin-left: 200px;
-}
 .split
 {
     flex-direction: row;
@@ -43,6 +39,8 @@ mat-card-content
 .redirect
 {
     margin-top: 100px;
+    float: right;
+
 }
 a
 {
@@ -51,4 +49,14 @@ a
 table
 {
     width: 100%;
+}
+.title
+{
+    flex-direction: row;
+}
+.deleteBtn
+{
+    display: flex;
+    height: 55px;
+    width: 65px;
 }

@@ -76,7 +76,7 @@ public class CartsController : ControllerBase
     {
         foreach (var cartInfo in cartInfoList)
         {
-            if (cartInfo.Quantity < 1)
+            if (cartInfo.Quantity < 1 || cartInfo.RequestDelete)
             {
                 _repository.DeleteCartItem(cartInfo.Id);
             }

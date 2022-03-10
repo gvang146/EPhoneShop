@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cart } from './_models/CartModel';
+import { CartDetails } from './_models/CartDetailsModel';
+import { User } from './_models/UserLoginModel';
 
 @Injectable({
   providedIn: 'root'
@@ -60,9 +62,15 @@ readonly APIUrl="https://localhost:7225/";
     return this.service.get<any>(this.APIUrl + 'Product/speed/' + speed)
   }
 
-  //deleteAllCartItems
-  DeleteAllCartItems()
+  
+  //updateCart
+  UpdateCartItem(cartInfo: any[])
   {
-    return this.service.delete(this.APIUrl + 'Carts');
+    let token = localStorage.getItem('token') ?? '';
+    let headers = new HttpHeaders({
+      'Content-Type' : 'application/json; charset=UTF-8',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.service.put<any>(this.APIUrl + 'Carts', cartInfo, {headers: headers});
   }
 }

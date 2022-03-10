@@ -1,13 +1,29 @@
 <div class="container">
     <mat-card>
-        <mat-card-title>Shopping Cart</mat-card-title>
+        <div class="title">
+            <mat-card-title>Shopping Cart</mat-card-title>
+            <button class="deleteBtn" mat-mini-fab color="accent" (click)="UpdateCartItem()">Update</button>
+        </div>
         <mat-divider></mat-divider>
         <mat-card-content>
             <div class="split" >
                 <div class="table-detail">
-                    <table mat-table [dataSource]="cartDetails">
+                    <table mat-table [dataSource]="cartDetails" class=""mat-elevation-z8>
+                        <!--Checkbox column-->
+                        <ng-container matColumnDef="select">
+                            <th mat-header-cell *matHeaderCellDef>
+                                <mat-label>Delete</mat-label>
+                              </th>
+                              <td mat-cell *matCellDef="let row">
+                                <mat-checkbox (click)="$event.stopPropagation()"
+                                              (change)="$event ? selection.toggle(row) : null"
+                                              [checked]="selection.isSelected(row)"
+                                              [aria-label]="checkboxLabel(row)">
+                                </mat-checkbox>
+                              </td>
+                        </ng-container>
 
-                        <!--Position Column-->
+                        <!--Product Name Column-->
                         <ng-container matColumnDef="productName">
                             <th mat-heaer-cell *matHeaderCellDef>Product Name</th>
                             <td mat-cell *matCellDef="let element">{{element.productName}}</td>
