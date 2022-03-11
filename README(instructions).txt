@@ -1,6 +1,6 @@
 Instructions to Run the Program
 Database:
-1. use the mySql text file to input commands to create the database
+1. use the mySql text file to input commands to create the database and insert data
 
 WEB API
 1. Open the ephoneshop in Visual Studios 2022 through the solution
