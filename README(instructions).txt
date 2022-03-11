@@ -1,7 +1,11 @@
 Instructions to Run the Program
+Database:
+1. use the mySql text file to input commands to create the database
+
 WEB API
 1. Open the ephoneshop in Visual Studios 2022 through the solution
 2. Build the solution
+3. Change the connectionstring in appsettings.json
 3. Run
 
 ANGULAR (frontend)
