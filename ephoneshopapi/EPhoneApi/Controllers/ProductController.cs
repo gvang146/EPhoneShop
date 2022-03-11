@@ -5,7 +5,7 @@ using EPhoneApi.Entities;
 namespace EPhoneApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]")] //how we defined URL
 public class ProductController : ControllerBase
 {
     private IProductRepository _prodRepo;
@@ -22,6 +22,7 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetAllProducts();
         return Ok(prodList);
     }
+
     [HttpGet]
     [Route("brand/{value}")]
     public IActionResult GetProductByBrand(string value)
@@ -30,6 +31,7 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetProductByBrand(value);
         return Ok(prodList);
     }
+
     [HttpGet]
     [Route("processor/{value}")]
     public IActionResult GetProductByProcessors(string value)
@@ -46,6 +48,7 @@ public class ProductController : ControllerBase
         prodList = _prodRepo.GetProductBySpeed(value);
         return Ok(prodList);
     }
+
     [HttpGet]
     [Route("price/{value}")]
     public IActionResult GetProductByPrice(string value)
