@@ -75,6 +75,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.refreshProList();
   }
+
+
   selectedBrands:string[];
   selectedProcessors:string[];
   selectedSpeeds:string[];
